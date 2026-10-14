@@ -1,11 +1,26 @@
-# Support — HPL Physical Book Check
+# Need help?
 
-Published by **Mit**. This is a free, independent tool for Houston Public Library catalog checks.
+If setup or a book search gets stuck, **you do not need to work out why yourself**.
 
-Use the repository's **Issues** tab to report a bug, ask a question or request help. Describe your host, saved plugin version, install route, the failing installation/activation/catalog-access step, what happened, and what you expected. The [friend-test report](FRIEND-TESTING.md) provides a short template. Include only public catalog links and redacted examples. Do not post credentials, library-card numbers, private chat transcripts, personal reading history or other sensitive information.
+Reply wherever Mit shared the link, or [ask for help on this project's Issues page](https://github.com/mit112/hpl-physical-book-check/issues). A GitHub account is needed to post there.
 
-Support is provided as time permits; no response or resolution time is guaranteed. If your host cannot inspect live item rows, the plugin cannot supply that capability. A catalog access challenge or incomplete evidence should produce an unverified answer.
+Tell Mit:
 
-For library-account, borrowing, pickup, accessibility or transfer questions, use [Houston Public Library's official website](https://houstonlibrary.org). Mit cannot change library holdings, place holds or resolve library-account issues through this repository.
+- Which app you used: ChatGPT or Codex.
+- Which step you reached: setup, selecting the plugin, or asking about a book.
+- What happened, including any error message.
+- What was confusing. Add the plugin version if you can find it.
 
-See the [privacy policy](PRIVACY.md) and [terms](TERMS.md).
+Do not share passwords, library-card numbers, account details, private reading lists, or full chat transcripts. A short example with personal details removed is enough.
+
+**New here? [Start with the setup guide](INSTALL.md).** It explains what you need and how to try your first book search.
+
+## About book results
+
+“Unable to verify” means the tool could not finish checking. It does not mean the library has no copies. Your chat may be unable to open the catalog pages it needs, even after installation. The plugin cannot add that access by itself.
+
+For library accounts, borrowing, pickup, accessibility, or transfer questions, [contact Houston Public Library](https://houstonlibrary.org). Mit cannot change library holdings or resolve library-account issues through this project.
+
+This is an independent project by **Mit**, not an official library service. Help is provided as time permits; no response or resolution time is guaranteed.
+
+[Privacy policy](PRIVACY.md) · [Terms of use](TERMS.md)

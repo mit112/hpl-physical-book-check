@@ -1,57 +1,54 @@
-# Friend testing — 1.3.6
+# Try a book search and tell Mit how it went
 
-Start with [INSTALL.md](INSTALL.md). This test is about whether a friend can install the package and use its workflow in their own host. Installation, skill activation and live catalog access are separate checks. No fixed availability verdict is promised: inventory can change.
+**New here? [Start with setup](INSTALL.md).** This is an early test version, **1.3.7**. It helps check printed books at Houston Public Library using ChatGPT or Codex. Setup may need help and does not work with every account yet.
 
-## 1. Verify installation and activation
+## 1. Ask about a book
 
-- Record the host/app, version if visible, and install route used.
-- Check the plugin details for saved version 1.3.6. If an importer changed it, record the actual version.
-- Start a new chat with the plugin selected and ask it to summarize its lookup scope and limitations. It should explain physical print scope, host-provided live retrieval, and honest incomplete outcomes. This explanation alone does not prove a live lookup works.
-- If the plugin cannot be installed, selected or loaded, stop and report that boundary. Do not silently substitute a generic answer.
+Start a new chat with **HPL Physical Book Check** selected. Try:
 
-## 2. Run a quick single-title check
+> Is The Hobbit by J. R. R. Tolkien available at the Heights branch of Houston Public Library?
 
-> Quick check: is The Employees by Olga Ravn available as an English physical print book anywhere in Houston Public Library? Any qualifying copy is enough.
+Or use a book you want to read. Include the title, author if you know it, and branch—or say “any Houston Public Library branch.”
 
-Check that it verifies the requested work and actual item rows, excludes different works by the same author, and stops at the first qualifying available copy. A partial positive should have unknown title-wide totals. Without sufficient evidence it should say Unable to verify, not invent availability or an exhaustive negative.
+## 2. Look at the answer
 
-## 3. Run a thorough constituent-volume check
+Was it easy to understand? Did it include a library catalog link you could open? Did it explain whether it found a copy or could not finish checking?
 
-> Check The Lion, the Witch and the Wardrobe by C. S. Lewis at HPL Looscan. English physical print, this volume only, thorough check.
+**“Unable to verify” does not mean there are no copies.** It means the check was incomplete. Availability can change; check the linked catalog before making a trip. No library login is needed, and this tool does not place holds.
 
-Check that it stays on this constituent, verifies language and edition, retains unresolved candidates/pages/statuses, and provides observed record links and a coverage statement. An Available tab count or a Place Hold button alone is not an available item. Reference/special-collection material must keep borrowing and transfer uncertainty. Record any unknown ordinary children's material labels; the bundled processor has not received the experimental prototype's extra aliases.
+## 3. Tell Mit what happened
 
-## 4. Check ambiguity handling
+Reply wherever Mit shared the link, or [report a problem here](https://github.com/mit112/hpl-physical-book-check/issues). If setup stopped you, that is useful feedback too.
 
-> Check Home at HPL Looscan, physical print.
-
-It should clarify the intended author/work before inspecting candidate holdings. Multiple unrelated books called Home must not be combined into one result.
-
-## 5. Check read-only behavior and evidence
-
-Ordinary checks must not sign in, request library credentials, place holds or change settings. Results should name the requested branch, retain real raw statuses, show actually observed catalog links and check times, and disclose any incomplete coverage. If your host cannot inspect live item rows, that is a capability limitation, not a library inventory finding.
-
-## Send back this short report
-
-Copy this to Mit or use the repository's [Issues tab](https://github.com/mit112/hpl-physical-book-check/issues):
+Copy this if it helps:
 
 ```text
-Host/app and version:
-Install route: marketplace / Plugin Creator import
-Saved plugin version:
-Installation: passed / blocked / failed
-Plugin activation: passed / blocked / failed
-Live item rows accessible: yes / no / unknown
-Quick check behavior:
-Thorough check behavior:
-Ambiguous Home behavior:
-Observed catalog links (public only):
-Errors or gaps:
-One thing that was confusing:
+I used: ChatGPT / Codex
+I tried this on: computer / phone
+I got to: setup / selecting the plugin / asking about a book
+The book and branch I tried:
+What happened:
+What was confusing:
+Plugin version, if I could find it:
 ```
 
-Redact account details. Do not send credentials, library-card numbers, private reading lists or full chat transcripts. A small redacted excerpt is enough to explain a problem. A correct Unable to verify answer is a safe outcome; count the intended lookup as incomplete, not as a successful inventory check.
+You do not need technical knowledge. Do not share library-card numbers, passwords, account details, private reading lists, or full chat transcripts. A short example with personal details removed is enough.
 
-## Short message to send with the link
+<details>
+<summary>Optional extra checks</summary>
 
-> I made an independent HPL print-book lookup workflow for ChatGPT/Codex. It is a manual-install beta, not an OpenAI-directory listing, and it needs a host with live catalog browsing. Could you try installing it and running the three sample requests? The install guide has a desktop/Codex route and an account-dependent Plugin Creator import option. Please tell me where it works or gets stuck—no library login or holds are needed. Start here: https://github.com/mit112/hpl-physical-book-check/blob/v1.3.6/INSTALL.md
+If you want to help test more than one search:
+
+- Ask for **The Employees by Olga Ravn at any HPL branch**, and say that any available English print copy is enough. It should stay on that book, rather than another book by the same author.
+- Ask for **The Lion, the Witch and the Wardrobe by C. S. Lewis at Looscan**, and specify this book only, English print, with a thorough check. It should explain any unfinished parts of the search.
+- Ask for **Home at Looscan** without naming an author. It should ask which book you mean.
+
+These are behavior checks, not promises that copies are available. Installation, plugin selection, and live catalog access are separate checks. A summary of what the plugin does is not proof that it can perform a live search. Reference material may not be borrowable. An available-results count or a hold button alone does not establish an available copy. Unknown totals should remain unknown; a safe incomplete answer is still an incomplete search.
+
+For a detailed report, include the app/version, setup route, saved plugin version, which searches completed, any public catalog links, and any errors. Remove personal details.
+
+</details>
+
+## Message you can share
+
+> I made a tool to help check printed books at Houston Public Library using ChatGPT or Codex. You can ask about a book at your usual branch or anywhere in HPL. It is an early test version: setup may need help, requires a computer, and does not work with every account yet. If you try it, please tell me what worked or where you got stuck. Start here: https://github.com/mit112/hpl-physical-book-check

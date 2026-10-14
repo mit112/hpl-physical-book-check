@@ -5,7 +5,7 @@ description: "Use when a user asks for physical print-book availability, branch 
 
 # HPL Physical Book Check
 
-Workflow release: **1.3.6**.
+Workflow release: **1.3.7**.
 
 ## Skill loading and recovery
 

@@ -1,60 +1,97 @@
-# Install HPL Physical Book Check — friend-test release 1.3.6
+# Start here: find your first library book
 
-This is a manual-install beta for supervised testing. It is available from [GitHub](https://github.com/mit112/hpl-physical-book-check/releases/tag/v1.3.6); it is not listed or approved in OpenAI's public plugin directory. A GitHub link does not automatically install it in ChatGPT.
+**HPL Physical Book Check** helps you check printed books at Houston Public Library using ChatGPT or Codex.
 
-The plugin supplies instructions and an optional local evidence processor. Your session needs permitted tools that can inspect live HPL record details and item-level holdings. It supplies no browser, server or library-account connection. Python is optional; it is not needed just to use the workflow manually. Installation options depend on your host, account and workspace.
+**Already installed?** Skip to [Ask about a book](#ask-about-a-book).
 
-## Route A: desktop/Codex repository marketplace
+## Before you start
 
-Use this route if you have a supported ChatGPT/Codex desktop host and Codex CLI available. The publisher checked catalog discovery with Codex CLI 0.160.1; a different account's actual installation and live lookup remain friend-test checks.
+This is an early test version, **1.3.7**. It takes some setup, may need help, and does not work with every account yet. Installation and a book search still need to be tested on a new user's account.
 
-1. Review the [source](https://github.com/mit112/hpl-physical-book-check), [privacy policy](PRIVACY.md) and [terms](TERMS.md).
-2. Add the pinned GitHub marketplace:
+Use a **computer**. Plugins are not currently available in the ChatGPT mobile app. You will need an account that lets you install this plugin, and a chat that can open the library's live catalog pages. See [OpenAI's plugin guide](https://learn.chatgpt.com/docs/plugins).
+
+You do not need to sign in to a library account for these checks. This tool does not place holds.
+
+## If you use ChatGPT
+
+**This is a setup option to test, not a confirmed install method for every account.** Try it only if your account offers Plugin Creator. That is the ChatGPT tool that helps add plugins.
+
+1. On your computer, open a new ChatGPT chat. Type **@** in the message box, search for **Plugin Creator**, and select it. If you cannot find it, stop here and [ask Mit for help](SUPPORT.md).
+2. [Download the 1.3.7 plugin file](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-1.3.7.zip). Leave it zipped: do not open or unpack it.
+3. Attach that file to the chat with Plugin Creator selected. Copy and send this message:
+
+   > Please install the attached HPL Physical Book Check file as a private plugin for me. Keep its instructions and files as supplied. Do not publish it or share it with other people. Tell me the saved version and give me the link to install it. If my account cannot do this, tell me instead of making a replacement.
+
+4. Follow the installation link it gives you. Check that the name is **HPL Physical Book Check** and note the version shown. It should be **1.3.7**; if it differs, tell Mit.
+5. Start a new chat. Type **@**, search for **HPL Physical Book Check**, and select it under **Plugins**. Then [ask about a book](#ask-about-a-book).
+
+If no installation link appears, or you cannot select the plugin afterward, setup has not finished. [Get help](SUPPORT.md). Attaching the file alone does not install it. You do not need the OpenAI developer submission website.
+
+## If you use Codex
+
+This option requires the Codex command-line tool. If you do not already use it, [ask Mit for setup help](SUPPORT.md); do not install extra software just to follow these instructions.
+
+<details>
+<summary>Show Codex setup steps</summary>
+
+The publisher confirmed that Codex CLI 0.160.1 could find the previous 1.3.6 release. Discovery of this documentation update has not been checked in a new account. Installation and a live book search on a new user's account still need testing.
+
+1. Open your terminal and copy this command:
 
    ```sh
-   codex plugin marketplace add mit112/hpl-physical-book-check --ref v1.3.6
+   codex plugin marketplace add mit112/hpl-physical-book-check --ref v1.3.7
    ```
 
-3. Confirm the plugin is offered:
+2. Open the desktop **Plugins** browser. Choose **Mit HPL Plugins** and install **HPL Physical Book Check**. In an interactive Codex session, `/plugins` opens the plugin browser. If the source does not appear, restart the desktop app and try again. Labels may differ by app.
+3. Check the plugin details for **1.3.7**. Start a new chat and select or invoke the installed plugin, then ask the book question below. If you cannot find it or it cannot open the catalog, get help.
 
-   ```sh
-   codex plugin list --marketplace mit-hpl-plugins --available --json
-   ```
+For a technical check that the source was added:
 
-   The available entry should be `hpl-physical-book-check@mit-hpl-plugins`, version `1.3.6`. Being listed as available is not the same as being installed.
-4. Open the desktop Plugins browser, choose **Mit HPL Plugins** / `mit-hpl-plugins`, and install **HPL Physical Book Check**. The CLI plugin browser is also accessible with `/plugins` from an interactive Codex session. If the source does not appear, restart the desktop app and check again. The exact UI labels may differ by host.
-5. Start a fresh chat after installation. Confirm version 1.3.6 in the plugin details, then invoke the installed plugin and use a prompt from [FRIEND-TESTING.md](FRIEND-TESTING.md). Invocation menus and live browser tools vary by host.
+```sh
+codex plugin list --marketplace mit-hpl-plugins --available --json
+```
 
-Do not use the OpenAI submission portal to install this for personal testing. Publisher identity verification and marketplace review are a separate distribution process.
+Look for `hpl-physical-book-check@mit-hpl-plugins`, version `1.3.7`. An available listing does not mean the plugin has been installed.
 
-To remove the source later, uninstall the plugin through your host's plugin browser, then run:
+</details>
+
+## Ask about a book
+
+With **HPL Physical Book Check** selected, copy this or use your own book and branch:
+
+> Is The Hobbit by J. R. R. Tolkien available at the Heights branch of Houston Public Library?
+
+Include the author if you know it. To check all branches, say “at any Houston Public Library branch.”
+
+The answer should give you a catalog link and explain what it could check. **“Unable to verify” means it could not finish checking. It does not mean the library has no copies.** Your chat may be unable to open the catalog pages it needs, even after installation.
+
+Check the linked catalog before making a trip. Ask the library about borrowing or pickup rules.
+
+## If something goes wrong
+
+- **Cannot find Plugin Creator or install the file?** Your account may not support this setup option.
+- **Cannot find HPL Physical Book Check in a new chat?** Installation or selection may not have finished.
+- **Installed, but no book result?** The chat may lack catalog access, or the check may be incomplete.
+
+[Get help from Mit](SUPPORT.md). Tell him which app you used and which step stopped working. You do not need to diagnose the problem yourself.
+
+<details>
+<summary>Updates, removal, and technical notes</summary>
+
+A private imported copy does not update automatically from this repository. The Codex setup is pinned to 1.3.7; switching versions requires adding the newer published tag and following your app's update or reinstall flow.
+
+To remove the Codex installation, uninstall the plugin in the Plugins browser, then remove its source:
 
 ```sh
 codex plugin marketplace remove mit-hpl-plugins
 ```
 
-Removing the marketplace source and uninstalling its plugin are separate actions. No HPL accounts or connections are configured by this package.
+Uninstalling the plugin and removing its source are separate actions.
 
-## Route B: private import through Plugin Creator — account-dependent
+This skills-only package supplies instructions and an optional evidence processor, not a browser, server, or library-account connection. Python is optional for manual use. Live checks need permitted tools that can inspect record details and item-level holdings; search snippets alone are insufficient. Unknown labels or statuses and reference material can prevent a complete result. The processor is unchanged from 1.3.4; the experimental retrieval prototype is excluded.
 
-Use this only if your ChatGPT account/workspace offers Plugin Creator and permits private plugin creation. This route has not been verified on a fresh recipient account. It is a test option, not a promise that every web or mobile account supports ZIP import.
+This GitHub release is separate from OpenAI's public plugin directory; it is not listed or approved there. Import availability and saved version depend on your account and workspace. Do not treat an imported copy as necessarily byte-identical to the ZIP.
 
-1. Download **hpl-physical-book-check-1.3.6.zip** from the [friend-test release](https://github.com/mit112/hpl-physical-book-check/releases/tag/v1.3.6).
-2. Start a new ChatGPT conversation, select Plugin Creator, and attach the ZIP.
-3. Send:
+See the [source](https://github.com/mit112/hpl-physical-book-check), [privacy policy](PRIVACY.md), [terms](TERMS.md), [OpenAI package guide](https://developers.openai.com/plugins/build/plugins), and [Plugin Creator guide](https://learn.chatgpt.com/docs/build-plugins).
 
-   > Import this ZIP as a private copy of HPL Physical Book Check for my account or workspace. Preserve the package's instructions, references and processor without rewriting them. Do not publish it to the public directory or change access for other people. Tell me the saved version and give me its install link. If this account cannot import the archive, explain the limitation instead of recreating a different workflow.
-
-4. Follow the resulting install flow, check the saved version, and start a fresh conversation with the plugin selected. Run the friend tests. Record any normalization or version change rather than assuming the saved copy is byte-identical.
-
-If Plugin Creator is unavailable or import fails, report that installation as blocked. Do not treat attaching the ZIP as proof that a persistent plugin was installed. Use Route A if appropriate. Workspace permissions still apply.
-
-## Limitations and updates
-
-After installation, use the installed plugin to ask book questions. An ordinary chat that can only search snippets may be unable to inspect the item rows required for a live answer. In that case the result must remain Unable to verify.
-
-A private imported copy does not establish an update connection to this repository. The pinned marketplace route stays on this release until you deliberately select a newer release. To switch it later, use the marketplace add command with the new published tag and follow your host's update/reinstall flow. Do not advertise automatic updates or identical behavior on every host.
-
-The optional processor is unchanged from 1.3.4. Reference material, unfamiliar labels and unknown statuses can still prevent a complete result. The separate experimental retrieval prototype is not included.
-
-References: [OpenAI package and marketplace guide](https://developers.openai.com/plugins/build/plugins), [plugin usage](https://learn.chatgpt.com/docs/plugins), and [Plugin Creator availability](https://learn.chatgpt.com/docs/build-plugins).
+</details>

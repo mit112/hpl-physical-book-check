@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.7 — October 14, 2026
+
+- Lead with a plain-language introduction, one book question, and a Start here link.
+- Explain setup in numbered steps and keep technical details expandable.
+- Simplify the plugin description, help page, and feedback form.
+- Make computer, account, and catalog-access requirements clear before setup.
+
+Documentation and presentation update only. Book-search instructions and processor behavior are unchanged. Installation on a new user account and end-to-end usability remain unverified.
+
 ## 1.3.6 — October 14, 2026
 
 - Add the Mit HPL Plugins repository marketplace with the plugin at the repository root.

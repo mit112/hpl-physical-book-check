@@ -19,7 +19,7 @@ def inspect(path: Path) -> dict:
     assert not re.search(r'BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|sk-[A-Za-z0-9]{32,}|\x2fUsers\x2f|skill:[/]{2}plugins_',text), 'Nonportable or sensitive content'
   m=json.loads(z.read(prefix+'plugin.json')); legacy=json.loads(z.read(prefix+'.codex-plugin/plugin.json'))
   assert m['name']=='hpl-physical-book-check' and re.fullmatch(r'\d+\.\d+\.\d+',m['version'])
-  assert m['version']==legacy['version']=='1.3.6'
+  assert m['version']==legacy['version']=='1.3.7'
   assert set(m)<={'$schema','name','version','description','author','homepage','repository','license','keywords','extensions'}, 'Nonportable manifest fields'
   for v in [m,legacy]:
    assert v.get('apps') is None and v.get('extensions',{}).get('com.openai',{}).get('apps') is None, 'Private app bindings'
@@ -47,7 +47,7 @@ def inspect(path: Path) -> dict:
   assert png[:8]==b'\x89PNG\r\n\x1a\n' and len(png)<=5*1024*1024
   width,height=struct.unpack('>II',png[16:24]); assert 256<=width==height<=4096
   skill=z.read(prefix+'skills/hpl-physical-book-check/SKILL.md').decode()
-  assert 'name: hpl-physical-book-check' in skill and 'Workflow release: **1.3.6**.' in skill
+  assert 'name: hpl-physical-book-check' in skill and 'Workflow release: **1.3.7**.' in skill
   for link in re.findall(r'\]\((references/[^)]+)\)',skill): assert prefix+'skills/hpl-physical-book-check/'+link in names
   return dict(version=m['version'],files=len(names),icon=dict(width=width,height=height,bytes=len(png)),listing_urls_complete=all(urls.values()),subtitle_characters=len(i['shortDescription']))
 
@@ -58,5 +58,5 @@ def build(path: Path) -> dict:
  return inspect(path)
 
 if __name__=='__main__':
- dest=Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else ROOT.parent/'hpl-physical-book-check-1.3.6.zip'
+ dest=Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else ROOT.parent/'hpl-physical-book-check-1.3.7.zip'
  print(json.dumps(build(dest),indent=2))
