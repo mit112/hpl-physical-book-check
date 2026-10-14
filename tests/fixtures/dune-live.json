@@ -1,0 +1,19 @@
+{
+  "provenance": "Rendered HPL Dune record SD_ILS:662664, captured 2026-10-13T05:09–05:10Z. Historical fixture, not current inventory.",
+  "table": [
+    ["Library", "Audience", "Home Location", "Material Type", "Shelf Number", "Status"],
+    ["BOOKLink at One Allen Center", "Adult", "Fiction", "Book", "HERBE", "Available"],
+    ["Central", "Adult", "Fiction", "New books", "HERBE", "Checked out"],
+    ["Flores", "Adult", "Fiction", "Paperback", "HERBE", "On hold for someone"],
+    ["Freed-Montrose", "Adult", "Fiction", "Book", "HERBE", "Available"],
+    ["Heights", "Adult", "Fiction", "Book", "HERBE", "Checked out"],
+    ["Heights", "Adult", "Fiction", "Book", "HERBE", "Checked out"],
+    ["Heights", "Adult", "Fiction", "Book", "HERBE", "Checked out"],
+    ["McGovern-Stella Link", "Adult", "Fiction", "Book", "HERBE", "Checked out"],
+    ["McGovern-Stella Link", "Adult", "Fiction", "Book", "HERBE", "Checked out"],
+    ["Oak Forest", "Adult", "Fiction", "Book", "HERBE", "Being transferred between libraries"],
+    ["Smith", "Adult", "Fiction", "Book", "HERBE", "On hold for someone"],
+    ["Stimley-Blue Ridge", "Adult", "Fiction", "Book", "HERBE", "Being transferred between libraries"],
+    ["Walter", "Adult", "Fiction", "Book", "HERBE", "Checked out"]
+  ]
+}

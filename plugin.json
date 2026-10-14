@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "name": "Mit"
+  },
+  "description": "Check Houston Public Library physical print books at your chosen branch, with live item evidence, call numbers, catalog links, and explicit coverage.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "capabilities": [
+          "Interactive"
+        ],
+        "category": "Productivity",
+        "defaultPrompt": "Check these physical print books at HPL Looscan: [titles and authors].",
+        "developerName": "Mit",
+        "displayName": "HPL Physical Book Check",
+        "longDescription": "A free, independent workflow for checking physical print books at Houston Public Library, at your chosen branch or across HPL. Requires an AI host with permitted tools that can inspect live catalog records and item rows; this plugin does not supply a catalog connection or browser. Supports quick checks that stop at a confirmed available item and thorough checks that retain search, candidate, edition and holdings coverage. Reports observed call numbers, catalog links and check times, with regular and large print distinguished. Digital, audio, DVDs, adaptations and kits are excluded from ordinary print-book requests. Incomplete checks remain Unable to verify, and partial totals stay unknown. An optional local Python processor helps classify and count supplied observations; normal use does not require local setup. Results depend on host behavior and catalog access, and availability can change. Reference material does not establish borrowing or transfer eligibility. Not affiliated with or endorsed by Houston Public Library. No payments or publisher-operated server or telemetry.",
+        "shortDescription": "HPL print-book availability",
+        "logo": "assets/icon.png",
+        "composerIcon": "assets/icon.png"
+      },
+      "publication": {
+        "release_notes": "Public skills-only packaging: portable skill loading, independent icon, MIT license, support and policy documentation, and explicit host and reliability limits. The optional evidence processor is unchanged from 1.3.4. The experimental guarded retrieval prototype is not included.",
+        "countries": [
+          "US"
+        ]
+      },
+      "review": {
+        "commerce": false
+      }
+    }
+  },
+  "name": "hpl-physical-book-check",
+  "version": "1.3.5",
+  "license": "MIT"
+}

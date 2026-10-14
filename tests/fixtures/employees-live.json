@@ -1,0 +1,20 @@
+{
+  "provenance": "Rendered HPL search for The Employees Olga Ravn, captured 2026-10-13T05:13–05:14Z. Historical fixture, not current inventory.",
+  "matching_record_id": "2201053",
+  "unrelated_record_id": "2339550",
+  "matching_title": "The employees : a workplace novel of the 22nd century",
+  "unrelated_title": "The wax child",
+  "matching_table": [
+    ["Library","Audience","Home Location","Material Type","Shelf Number","Status"],
+    ["Freed-Montrose","Adult","Fiction","Book","RAVN","Due 10/28/26"],
+    ["Heights","Adult","Fiction","Book","RAVN","Available"],
+    ["Kendall","Adult","Fiction","Book","RAVN","Available"],
+    ["Oak Forest","Adult","Fiction","Book","RAVN","Due 10/28/26"],
+    ["Oak Forest","Adult","Fiction","Book","RAVN","Available"]
+  ],
+  "unrelated_table": [
+    ["Library","Audience","Home Location","Material Type","Shelf Number","Status"],
+    ["Looscan","Adult","Fiction","Book","RAVN","Due 11/9/26"],
+    ["Looscan","Adult","Fiction","Book","RAVN","Due 11/20/26"]
+  ]
+}
