@@ -3,7 +3,7 @@ from pathlib import Path, PurePosixPath
 import json,re,stat,struct,sys,zipfile
 
 ROOT=Path(__file__).resolve().parent
-FILES=['plugin.json','.codex-plugin/plugin.json','README.md','SUPPORT.md','PRIVACY.md','TERMS.md','LICENSE','VALIDATION.md','CHANGELOG.md','.gitignore','build_release.py','verify.py','assets/icon.png','skills/hpl-physical-book-check/SKILL.md','skills/hpl-physical-book-check/references/catalog-access.md','skills/hpl-physical-book-check/references/evidence-toolkit.md','skills/hpl-physical-book-check/references/work-workflow.md','skills/hpl-physical-book-check/scripts/hpl_evidence.py','tests/test_evidence.py','tests/fixtures/dune-live.json','tests/fixtures/employees-live.json']
+FILES=['plugin.json','.codex-plugin/plugin.json','README.md','SUPPORT.md','PRIVACY.md','TERMS.md','LICENSE','VALIDATION.md','CHANGELOG.md','.gitignore','build_release.py','verify.py','assets/icon.png','skills/hpl-physical-book-check/SKILL.md','skills/hpl-physical-book-check/references/catalog-access.md','skills/hpl-physical-book-check/references/evidence-toolkit.md','skills/hpl-physical-book-check/references/work-workflow.md','skills/hpl-physical-book-check/scripts/hpl_evidence.py','tests/test_evidence.py','tests/fixtures/dune-live.json','tests/fixtures/employees-live.json','INSTALL.md','FRIEND-TESTING.md','.agents/plugins/marketplace.json']
 
 def inspect(path: Path) -> dict:
  with zipfile.ZipFile(path) as z:
@@ -19,7 +19,7 @@ def inspect(path: Path) -> dict:
     assert not re.search(r'BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|sk-[A-Za-z0-9]{32,}|\x2fUsers\x2f|skill:[/]{2}plugins_',text), 'Nonportable or sensitive content'
   m=json.loads(z.read(prefix+'plugin.json')); legacy=json.loads(z.read(prefix+'.codex-plugin/plugin.json'))
   assert m['name']=='hpl-physical-book-check' and re.fullmatch(r'\d+\.\d+\.\d+',m['version'])
-  assert m['version']==legacy['version']=='1.3.5'
+  assert m['version']==legacy['version']=='1.3.6'
   assert set(m)<={'$schema','name','version','description','author','homepage','repository','license','keywords','extensions'}, 'Nonportable manifest fields'
   for v in [m,legacy]:
    assert v.get('apps') is None and v.get('extensions',{}).get('com.openai',{}).get('apps') is None, 'Private app bindings'
@@ -36,11 +36,18 @@ def inspect(path: Path) -> dict:
   assert all(urls.values()), 'Listing URLs incomplete'
   for url in urls.values():
    if url: assert re.fullmatch(r'https://github\.com/mit112/hpl-physical-book-check(?:/blob/main/(?:SUPPORT|PRIVACY|TERMS)\.md)?',url)
+  catalog=json.loads(z.read(prefix+'.agents/plugins/marketplace.json'))
+  assert catalog['name']=='mit-hpl-plugins' and len(catalog['plugins'])==1
+  entry=catalog['plugins'][0]
+  assert entry['name']==m['name'] and entry['source']=={'source':'local','path':'./'}, 'Marketplace plugin path differs'
+  assert entry['policy']=={'installation':'AVAILABLE','authentication':'ON_INSTALL'}
+  assert entry['category']==i['category']=='Productivity'
+  assert not re.search(r'\bfree\b|\bpricing\b|no payments',i['longDescription'],re.I), 'Pricing wording in listing'
   png=z.read(prefix+i['logo']); assert i['logo']==i['composerIcon']=='assets/icon.png'
   assert png[:8]==b'\x89PNG\r\n\x1a\n' and len(png)<=5*1024*1024
   width,height=struct.unpack('>II',png[16:24]); assert 256<=width==height<=4096
   skill=z.read(prefix+'skills/hpl-physical-book-check/SKILL.md').decode()
-  assert 'name: hpl-physical-book-check' in skill and 'Workflow release: **1.3.5**.' in skill
+  assert 'name: hpl-physical-book-check' in skill and 'Workflow release: **1.3.6**.' in skill
   for link in re.findall(r'\]\((references/[^)]+)\)',skill): assert prefix+'skills/hpl-physical-book-check/'+link in names
   return dict(version=m['version'],files=len(names),icon=dict(width=width,height=height,bytes=len(png)),listing_urls_complete=all(urls.values()),subtitle_characters=len(i['shortDescription']))
 
@@ -51,5 +58,5 @@ def build(path: Path) -> dict:
  return inspect(path)
 
 if __name__=='__main__':
- dest=Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else ROOT.parent/'hpl-physical-book-check-1.3.5.zip'
+ dest=Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else ROOT.parent/'hpl-physical-book-check-1.3.6.zip'
  print(json.dumps(build(dest),indent=2))

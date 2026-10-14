@@ -1,0 +1,20 @@
+{
+  "name": "mit-hpl-plugins",
+  "interface": {
+    "displayName": "Mit HPL Plugins"
+  },
+  "plugins": [
+    {
+      "name": "hpl-physical-book-check",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

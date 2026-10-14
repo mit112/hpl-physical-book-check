@@ -2,7 +2,7 @@
 
 Published by **Mit**. This is a free, independent tool for Houston Public Library catalog checks.
 
-Use the repository's **Issues** tab to report a bug, ask a question or request help. Describe your host, plugin version, requested title and branch, what happened, and what you expected. Include only public catalog links and redacted examples. Do not post credentials, library-card numbers, private chat transcripts, personal reading history or other sensitive information.
+Use the repository's **Issues** tab to report a bug, ask a question or request help. Describe your host, saved plugin version, install route, the failing installation/activation/catalog-access step, what happened, and what you expected. The [friend-test report](FRIEND-TESTING.md) provides a short template. Include only public catalog links and redacted examples. Do not post credentials, library-card numbers, private chat transcripts, personal reading history or other sensitive information.
 
 Support is provided as time permits; no response or resolution time is guaranteed. If your host cannot inspect live item rows, the plugin cannot supply that capability. A catalog access challenge or incomplete evidence should produce an unverified answer.
 

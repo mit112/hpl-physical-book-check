@@ -7,7 +7,7 @@
     "defaultPrompt": "Check these physical print books at HPL Looscan: [titles and authors].",
     "developerName": "Mit",
     "displayName": "HPL Physical Book Check",
-    "longDescription": "A free, independent workflow for checking physical print books at Houston Public Library, at your chosen branch or across HPL. Requires an AI host with permitted tools that can inspect live catalog records and item rows; this plugin does not supply a catalog connection or browser. Supports quick checks that stop at a confirmed available item and thorough checks that retain search, candidate, edition and holdings coverage. Reports observed call numbers, catalog links and check times, with regular and large print distinguished. Digital, audio, DVDs, adaptations and kits are excluded from ordinary print-book requests. Incomplete checks remain Unable to verify, and partial totals stay unknown. An optional local Python processor helps classify and count supplied observations; normal use does not require local setup. Results depend on host behavior and catalog access, and availability can change. Reference material does not establish borrowing or transfer eligibility. Not affiliated with or endorsed by Houston Public Library. No payments or publisher-operated server or telemetry.",
+    "longDescription": "Find and verify physical print-book copies at Houston Public Library, at a selected branch or across HPL. This research workflow reports observed item availability, edition details, call numbers, catalog links, check times and remaining coverage. Quick checks stop at a confirmed available item; thorough checks aim to resolve all scoped candidates and holdings. Regular and large print are distinguished; digital, audio, DVDs, adaptations and kits are excluded from ordinary print requests. Incomplete checks remain Unable to verify and partial totals stay unknown. Requires host-provided tools that can inspect live catalog records and item rows. The plugin supplies instructions and an optional local evidence processor; it does not provide a browser or catalog connection. Manual installation through a repository marketplace is intended for supervised testing on supported desktop/Codex hosts. Availability and install options depend on the host, account and workspace. Reference-material status does not establish borrowing or transfer eligibility. Independent tool, not affiliated with or endorsed by Houston Public Library.",
     "shortDescription": "HPL print-book availability",
     "logo": "assets/icon.png",
     "composerIcon": "assets/icon.png",
@@ -19,7 +19,7 @@
   "extensions": {
     "com.openai": {
       "publication": {
-        "release_notes": "Public skills-only packaging: portable skill loading, independent icon, MIT license, support and policy documentation, and explicit host and reliability limits. The optional evidence processor is unchanged from 1.3.4. The experimental guarded retrieval prototype is not included.",
+        "release_notes": "Add a repository marketplace and friend-testing installation guide, including an account-dependent private-import option. Clarify supported host requirements and public-directory submission status; remove pricing wording from the listing. The evidence processor is unchanged and the experimental retrieval prototype remains excluded.",
         "countries": [
           "US"
         ]
@@ -30,7 +30,7 @@
     }
   },
   "name": "hpl-physical-book-check",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "Check Houston Public Library physical print books at your chosen branch, with live item evidence, call numbers, catalog links, and explicit coverage.",
   "author": {
     "name": "Mit"
