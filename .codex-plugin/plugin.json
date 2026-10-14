@@ -10,7 +10,11 @@
     "longDescription": "A free, independent workflow for checking physical print books at Houston Public Library, at your chosen branch or across HPL. Requires an AI host with permitted tools that can inspect live catalog records and item rows; this plugin does not supply a catalog connection or browser. Supports quick checks that stop at a confirmed available item and thorough checks that retain search, candidate, edition and holdings coverage. Reports observed call numbers, catalog links and check times, with regular and large print distinguished. Digital, audio, DVDs, adaptations and kits are excluded from ordinary print-book requests. Incomplete checks remain Unable to verify, and partial totals stay unknown. An optional local Python processor helps classify and count supplied observations; normal use does not require local setup. Results depend on host behavior and catalog access, and availability can change. Reference material does not establish borrowing or transfer eligibility. Not affiliated with or endorsed by Houston Public Library. No payments or publisher-operated server or telemetry.",
     "shortDescription": "HPL print-book availability",
     "logo": "assets/icon.png",
-    "composerIcon": "assets/icon.png"
+    "composerIcon": "assets/icon.png",
+    "websiteURL": "https://github.com/mit112/hpl-physical-book-check",
+    "supportURL": "https://github.com/mit112/hpl-physical-book-check/blob/main/SUPPORT.md",
+    "privacyPolicyURL": "https://github.com/mit112/hpl-physical-book-check/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/mit112/hpl-physical-book-check/blob/main/TERMS.md"
   },
   "extensions": {
     "com.openai": {

@@ -5,7 +5,7 @@ import json,re,stat,struct,sys,zipfile
 ROOT=Path(__file__).resolve().parent
 FILES=['plugin.json','.codex-plugin/plugin.json','README.md','SUPPORT.md','PRIVACY.md','TERMS.md','LICENSE','VALIDATION.md','CHANGELOG.md','.gitignore','build_release.py','verify.py','assets/icon.png','skills/hpl-physical-book-check/SKILL.md','skills/hpl-physical-book-check/references/catalog-access.md','skills/hpl-physical-book-check/references/evidence-toolkit.md','skills/hpl-physical-book-check/references/work-workflow.md','skills/hpl-physical-book-check/scripts/hpl_evidence.py','tests/test_evidence.py','tests/fixtures/dune-live.json','tests/fixtures/employees-live.json']
 
-def inspect(path: Path, *, require_urls: bool=False) -> dict:
+def inspect(path: Path) -> dict:
  with zipfile.ZipFile(path) as z:
   names=z.namelist(); assert len(names)==len(set(names)), 'Duplicate archive paths'
   prefix='hpl-physical-book-check/'
@@ -33,7 +33,7 @@ def inspect(path: Path, *, require_urls: bool=False) -> dict:
   assert 'release_notes' in ext['publication']
   assert not any(x in ext['review'] for x in ['test_cases','demo_recording_url']), 'Unnecessary skills-only review declarations'
   urls={k:i.get(k) for k in ['websiteURL','supportURL','privacyPolicyURL','termsOfServiceURL']}
-  if require_urls: assert all(urls.values()), 'Listing URLs incomplete'
+  assert all(urls.values()), 'Listing URLs incomplete'
   for url in urls.values():
    if url: assert re.fullmatch(r'https://github\.com/mit112/hpl-physical-book-check(?:/blob/main/(?:SUPPORT|PRIVACY|TERMS)\.md)?',url)
   png=z.read(prefix+i['logo']); assert i['logo']==i['composerIcon']=='assets/icon.png'
@@ -44,12 +44,12 @@ def inspect(path: Path, *, require_urls: bool=False) -> dict:
   for link in re.findall(r'\]\((references/[^)]+)\)',skill): assert prefix+'skills/hpl-physical-book-check/'+link in names
   return dict(version=m['version'],files=len(names),icon=dict(width=width,height=height,bytes=len(png)),listing_urls_complete=all(urls.values()),subtitle_characters=len(i['shortDescription']))
 
-def build(path: Path, *, require_urls: bool=False) -> dict:
+def build(path: Path) -> dict:
  assert not any((ROOT/name).is_symlink() for name in FILES)
  with zipfile.ZipFile(path,'w',compression=zipfile.ZIP_DEFLATED) as z:
   for name in FILES: z.write(ROOT/name,'hpl-physical-book-check/'+name)
- return inspect(path,require_urls=require_urls)
+ return inspect(path)
 
 if __name__=='__main__':
  dest=Path(sys.argv[1]) if len(sys.argv)>1 and not sys.argv[1].startswith('--') else ROOT.parent/'hpl-physical-book-check-1.3.5.zip'
- print(json.dumps(build(dest,require_urls='--require-urls' in sys.argv),indent=2))
+ print(json.dumps(build(dest),indent=2))

@@ -8,7 +8,7 @@ def main() -> None:
  result=subprocess.run([sys.executable,'-W','error::ResourceWarning','-m','unittest','discover','-s','tests','-v'],cwd=b.ROOT,env=env)
  if result.returncode: raise SystemExit(result.returncode)
  with tempfile.TemporaryDirectory() as directory:
-  root=Path(directory); archive=root/'release.zip'; report=b.build(archive,require_urls='--require-urls' in sys.argv)
+  root=Path(directory); archive=root/'release.zip'; report=b.build(archive)
   forbidden=root/'forbidden.zip'
   with zipfile.ZipFile(archive) as src,zipfile.ZipFile(forbidden,'w') as dst:
    for name in src.namelist(): dst.writestr(name,src.read(name))
