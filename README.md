@@ -10,6 +10,8 @@ It tries to find a copy and tells you where it is, whether it is available, and 
 
 **[Start here: setup and your first book search →](INSTALL.md)**
 
+**Watch first:** [30-second introduction](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-intro.mp4) · [90-second setup walkthrough](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-walkthrough.mp4). The book results shown are October 14, 2026 examples; availability changes.
+
 **Before you start:** this is an early test version, **1.3.7**. Setup may need help, and it does not work with every account. There is no one-click ChatGPT install link yet. Use a computer; plugins are not currently available in the ChatGPT mobile app. Your chat also needs access to the library's live catalog. See the [setup guide](INSTALL.md) and [OpenAI's plugin guide](https://learn.chatgpt.com/docs/plugins).
 
 ## What you can ask
