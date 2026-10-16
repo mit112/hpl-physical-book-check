@@ -14,16 +14,18 @@ You do not need to sign in to a library account for these checks. This tool does
 
 ## If you use ChatGPT
 
-**This is a setup option to test, not a confirmed install method for every account.** Try it only if your account offers Plugin Creator. That is the ChatGPT tool that helps add plugins.
+**This is a setup option to test, not a confirmed install method for every account.** It worked on Mit's account on October 14, 2026. Try it only if your account offers Plugin Creator. That is the ChatGPT tool that helps add plugins.
 
-1. On your computer, open a new ChatGPT chat. Type **@** in the message box, search for **Plugin Creator**, and select it. If you cannot find it, stop here and [ask Mit for help](SUPPORT.md).
-2. [Download the 1.3.7 plugin file](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-1.3.7.zip). Leave it zipped: do not open or unpack it.
-3. Attach that file to the chat with Plugin Creator selected. Copy and send this message:
+Prefer to watch first? The [walkthrough video](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-walkthrough.mp4) shows these steps.
 
-   > Please install the attached HPL Physical Book Check file as a private plugin for me. Keep its instructions and files as supplied. Do not publish it or share it with other people. Tell me the saved version and give me the link to install it. If my account cannot do this, tell me instead of making a replacement.
+1. On your computer, [download the ChatGPT plugin file](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-1.3.7-chatgpt.zip) (`hpl-physical-book-check-1.3.7-chatgpt.zip`). Leave it zipped: do not open or unpack it. Use this file, not the plain 1.3.7 ZIP, which is for Codex.
+2. Open a new ChatGPT chat. Type **@** in the message box, search for **Plugin Creator**, and select it. If you cannot find it, stop here and [ask Mit for help](SUPPORT.md).
+3. Attach the file you downloaded. Copy and send this message exactly:
 
-4. Follow the installation link it gives you. Check that the name is **HPL Physical Book Check** and note the version shown. It should be **1.3.7**; if it differs, tell Mit.
-5. Start a new chat. Type **@**, search for **HPL Physical Book Check**, and select it under **Plugins**. Then [ask about a book](#ask-about-a-book).
+   > Create a private plugin from this HPL package. Keep its instructions and files. Give me the installation link and saved version. Do not publish or share it. If your account cannot import it, say so instead of creating a replacement.
+
+4. Open the installation link it gives you, and install if asked. Check that the name is **HPL Physical Book Check** and the saved version is **1.3.7**; if it differs, tell Mit.
+5. Choose **Try in chat**. Or start a new chat, type **@**, search for **HPL Physical Book Check**, and select it under **Plugins**. Then [ask about a book](#ask-about-a-book).
 
 If no installation link appears, or you cannot select the plugin afterward, setup has not finished. [Get help](SUPPORT.md). Attaching the file alone does not install it. You do not need the OpenAI developer submission website.
 
@@ -89,6 +91,8 @@ codex plugin marketplace remove mit-hpl-plugins
 Uninstalling the plugin and removing its source are separate actions.
 
 This skills-only package supplies instructions and an optional evidence processor, not a browser, server, or library-account connection. Python is optional for manual use. Live checks need permitted tools that can inspect record details and item-level holdings; search snippets alone are insufficient. Unknown labels or statuses and reference material can prevent a complete result. The processor is unchanged from 1.3.4; the experimental retrieval prototype is excluded.
+
+The ChatGPT plugin file is the 1.3.7 release without `.agents/plugins/marketplace.json`, the Codex marketplace catalog that Plugin Creator rejected; every other file is identical to the `v1.3.7` tag.
 
 This GitHub release is separate from OpenAI's public plugin directory; it is not listed or approved there. Import availability and saved version depend on your account and workspace. Do not treat an imported copy as necessarily byte-identical to the ZIP.
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — October 15, 2026
+
+- Point ChatGPT setup at `hpl-physical-book-check-1.3.7-chatgpt.zip`, the 1.3.7 files without the Codex marketplace catalog. Plugin Creator rejected the plain 1.3.7 ZIP and accepted this one.
+- Use the tested Plugin Creator setup message and step order.
+- Link a 30-second introduction and a 90-second setup walkthrough video.
+
+Documentation only. The 1.3.7 package and its book-search behavior are unchanged.
+
 ## 1.3.7 — October 14, 2026
 
 - Lead with a plain-language introduction, one book question, and a Start here link.
