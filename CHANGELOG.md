@@ -1,5 +1,11 @@
 # Changelog
 
+## Video and repository update — October 16, 2026
+
+- Re-cut the introduction (31.3 seconds) and walkthrough (89.2 seconds) so narration, step titles and end cards no longer name a plugin version: they say to download the file ending in `-chatgpt.zip` from the guide and check that the version matches it. The October 14 screenshots still show 1.3.7 as captured.
+- Play both videos inline in README.md ([PR #2](https://github.com/mit112/hpl-physical-book-check/pull/2)) and drop the 1.3.7-only video caveats. The v1.3.8 release notes point to the README players; the v1.3.7 release keeps its 1.3.7-specific MP4s.
+- Re-point the `v1.3.8` tag and `main` to rewritten commits that change only the 1.3.8 commit's author email. Every file, tree and message is unchanged, and so are the 1.3.8 release assets.
+
 ## 1.3.8 — October 15, 2026
 
 - Lead book-search answers with the practical result, then Details and Also useful. Keep uncertainty upfront and list tables compact, with coverage and edition evidence below.

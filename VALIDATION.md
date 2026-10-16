@@ -18,6 +18,10 @@ The [v1.3.7 release](https://github.com/mit112/hpl-physical-book-check/releases/
 
 The producer reports that the revised introduction is 31.3 seconds and walkthrough 89.4 seconds, both with the repository URL and ChatGPT filename on the end cards, and that the separate media project's `python3 src/verify.py` passed. That media check was not rerun in this repository. These publication checks do not validate live catalog lookup or fresh-account installation.
 
+## Videos and history — October 16, 2026
+
+[PR #2](https://github.com/mit112/hpl-physical-book-check/pull/2) embeds version-neutral re-cuts of both videos as GitHub attachments (web encodes under 10 MB). Both rendered `<video>` sources returned `206 video/mp4` to an unauthenticated request. The 1.3.8 commit was rewritten to change only its author and committer email, and the `v1.3.8` tag's tagger email; trees, messages and dates were compared and are identical. `v1.3.5`–`v1.3.7` and `1c56eab` are unchanged. These checks do not validate live catalog lookup or fresh-account installation.
+
 ## 1.3.8 answer presentation — October 15, 2026
 
 The source now routes response composition and bounded related checks through `references/answer-format.md`, which is included in both release ZIPs. The processor and its 54 tests are unchanged. The full offline gate passes with the installed Python 3.14 runtime: a 25-file Codex ZIP, a 24-file ChatGPT ZIP, byte-identical shared files, and rejection controls for a forbidden file, private binding, wrong marketplace path and a marketplace catalog in a ChatGPT ZIP. The new variant check failed against the old builder before the implementation. The Mac's default `python3` is 3.9, below the optional helper's documented 3.10+ requirement; the installed `python3.14` was used.
