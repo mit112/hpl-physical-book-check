@@ -3,7 +3,7 @@ from pathlib import Path, PurePosixPath
 import argparse,json,re,stat,struct,zipfile
 
 ROOT=Path(__file__).resolve().parent
-FILES=['plugin.json','.codex-plugin/plugin.json','README.md','SUPPORT.md','PRIVACY.md','TERMS.md','LICENSE','VALIDATION.md','CHANGELOG.md','.gitignore','build_release.py','verify.py','assets/icon.png','skills/hpl-physical-book-check/SKILL.md','skills/hpl-physical-book-check/references/catalog-access.md','skills/hpl-physical-book-check/references/evidence-toolkit.md','skills/hpl-physical-book-check/references/work-workflow.md','skills/hpl-physical-book-check/references/answer-format.md','skills/hpl-physical-book-check/scripts/hpl_evidence.py','tests/test_evidence.py','tests/fixtures/dune-live.json','tests/fixtures/employees-live.json','INSTALL.md','FRIEND-TESTING.md','.agents/plugins/marketplace.json']
+FILES=['plugin.json','.codex-plugin/plugin.json','README.md','SUPPORT.md','PRIVACY.md','TERMS.md','LICENSE','VALIDATION.md','CHANGELOG.md','.gitignore','build_release.py','verify.py','assets/icon.png','assets/setup/chatgpt-plugin-creator.png','assets/setup/chatgpt-attach-package.png','assets/setup/chatgpt-try-in-chat.png','skills/hpl-physical-book-check/SKILL.md','skills/hpl-physical-book-check/references/catalog-access.md','skills/hpl-physical-book-check/references/evidence-toolkit.md','skills/hpl-physical-book-check/references/work-workflow.md','skills/hpl-physical-book-check/references/answer-format.md','skills/hpl-physical-book-check/scripts/hpl_evidence.py','tests/test_evidence.py','tests/fixtures/dune-live.json','tests/fixtures/employees-live.json','INSTALL.md','FRIEND-TESTING.md','.agents/plugins/marketplace.json']
 
 def inspect(path: Path, chatgpt: bool=False) -> dict:
  with zipfile.ZipFile(path) as z:

@@ -18,14 +18,25 @@ You do not need to sign in to a library account for these checks. This tool does
 
 Prefer to watch first? The [setup walkthrough video](README.md#watch-first) shows these steps.
 
+The screenshots below are from the October 14, 2026 walkthrough. They show where to click; use the **1.3.8** file and the exact message in this guide.
+
 1. On your computer, [download the ChatGPT plugin file](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.8/hpl-physical-book-check-1.3.8-chatgpt.zip) (`hpl-physical-book-check-1.3.8-chatgpt.zip`). Leave it zipped: do not open or unpack it. Use this file, not the plain 1.3.8 ZIP, which is for Codex.
 2. Open a new ChatGPT chat. Type **@** in the message box, search for **Plugin Creator**, and select it. If you cannot find it, stop here and [ask Mit for help](SUPPORT.md).
+
+   ![Step 2: Plugin Creator appears beneath the message box after typing @Plugin Creator. Select that menu result.](assets/setup/chatgpt-plugin-creator.png)
+
 3. Attach the file you downloaded. Copy and send this message exactly:
 
    > Create a private plugin from this HPL package. Keep its instructions and files. Give me the installation link and saved version. Do not publish or share it. If your account cannot import it, say so instead of creating a replacement.
 
+   ![Step 3: The ZIP attachment and Plugin Creator appear in the message box, with the blue Send arrow highlighted.](assets/setup/chatgpt-attach-package.png)
+
+   *Check that the ZIP is attached and Plugin Creator is selected. Copy the full message above; the screenshot shows earlier wording.*
+
 4. Open the installation link it gives you, and install if asked. Check that the name is **HPL Physical Book Check** and the saved version is **1.3.8**; if it differs, tell Mit.
 5. Choose **Try in chat**. Or start a new chat, type **@**, search for **HPL Physical Book Check**, and select it under **Plugins**. Then [ask about a book](#ask-about-a-book).
+
+   ![Step 5: The HPL Physical Book Check plugin page has a Try in chat button beside Manage near the top right.](assets/setup/chatgpt-try-in-chat.png)
 
 If no installation link appears, or you cannot select the plugin afterward, setup has not finished. [Get help](SUPPORT.md). Attaching the file alone does not install it. You do not need the OpenAI developer submission website.
 
