@@ -1,11 +1,16 @@
 """Full offline release gate. No network, catalog actions or external dependencies."""
-import json,os,subprocess,sys,tempfile,zipfile
+import json,os,shutil,subprocess,sys,tempfile,zipfile
 from pathlib import Path
 import build_release as b
 
 def main() -> None:
  env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1')
  result=subprocess.run([sys.executable,'-W','error::ResourceWarning','-m','unittest','discover','-s','tests','-v'],cwd=b.ROOT,env=env)
+ if result.returncode: raise SystemExit(result.returncode)
+ node=shutil.which('node')
+ if not node: raise SystemExit('Node.js 18+ is required to verify the live browser runner')
+ env['HPL_TEST_PYTHON']=sys.executable
+ result=subprocess.run([node,'--test','tests/test_browser_runner.mjs'],cwd=b.ROOT,env=env)
  if result.returncode: raise SystemExit(result.returncode)
  with tempfile.TemporaryDirectory() as directory:
   root=Path(directory); archive=root/'release.zip'; report=b.build(archive)

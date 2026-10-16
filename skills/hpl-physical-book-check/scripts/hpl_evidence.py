@@ -16,16 +16,19 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse, unquote
 
-PRINT_FORMATS = {'books', 'book', 'large print'}
+PRINT_FORMATS = {'books', 'book', 'large print', 'regular print'}
 NONPRINT_FORMATS = {'audio disc', 'audiobook', 'ebook', 'e-book', 'electronic resource',
                     'dvd', 'blu-ray', 'blu ray', 'kit', 'video', 'sound recording'}
 PRINT_ITEMS = {'book', 'books', 'paperback', 'new books', 'notable book',
-               'large print', 'large print book', 'graphic novel', 'new book'}
-LOADING = {'', 'searching...', 'loading...', 'searching', 'loading', 'unknown'}
+               'large print', 'large print book', 'graphic novel', 'new book',
+               'lucky day collection', 'family place parenting collection',
+               'teen book', 'notable teen book', 'new teen books'}
+LOADING = {'', 'searching...', 'loading...', 'searching', 'loading', 'unknown', 'undetermined'}
 NON_BRANCH = {'floating collection'}
 UNAVAILABLE = {'checked out', 'on hold for someone', 'being transferred between libraries',
                'being shipped to library', 'in transit', 'in processing', 'processing',
-               'missing', 'lost', 'on order', 'unavailable', 'not available'}
+               'missing', 'lost', 'on order', 'unavailable', 'not available',
+               'unavailable – item sent to float hub'}
 BUCKETS = ['available', 'unable_to_verify', 'held_unavailable', 'no_branch_copy', 'no_print_match']
 
 
@@ -352,6 +355,8 @@ def refresh_ledger(ledger):
     ledger.pop('blocker', None)
     for title in ledger['titles']:
         title.pop('blocker', None)
+        title.pop('browser_reopens', None)
+        title.pop('browser_retry', None)
         for flag in ['search_complete', 'fallback_complete', 'editions_complete']:
             title[flag] = False
         title['issues'] = []

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.0 — October 16, 2026
+
+- Add a host-browser runner that executes thorough title-list searches, traverses observed pages, captures print metadata/item cells, and saves each view/work before continuing. Require explicit identity, edition and exclusion review before the existing completion gate can close coverage.
+- Add resumable collections, persisted bounded reopen intent, retention/rechecking of known editions omitted by a later search, and fail-closed handling for stale cards, repeated pages, external pagination links and browser transport loss.
+- Recognize observed regular-print and teen/collection labels only within verified print records. Preserve explicit unavailable detail and keep undetermined language unresolved. Reset browser recovery state on a later refresh.
+- Include the Node runner suite in the full gate and both ZIP variants. Preserve quick/any-one processing semantics.
+- Validate live retrieval across 76 unique Goodreads winners (79 award labels), retaining 61 complete and 15 partial checks after real catalog gaps and subsequent host transport failure. A fresh final-source Codex smoke test then completed two titles in separate batches with saved resume, three editions and 45 item rows. Automatic installed ChatGPT invocation remains unverified.
+- Release both ZIP variants and checksums under `v1.4.0`, update setup links, and deliver the authorized private-account update while preserving its identity, audience, prompts and account metadata. Existing separate imports still need an explicit update.
+
 ## 1.3.9 — October 16, 2026
 
 - Build a resumable queue from saved per-work evidence, returning at most ten actionable works without consuming them on read.

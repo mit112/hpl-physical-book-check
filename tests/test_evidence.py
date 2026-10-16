@@ -165,10 +165,36 @@ class EvidenceTests(unittest.TestCase):
     def test_copy_count_conflict_is_partial(self):
         self.assertEqual(self.result(entry(record(expected_copies=2)))['total'], None)
 
+    def test_lucky_day_item_in_verified_book_record_counts_as_print(self):
+        for material in ['Lucky Day Collection', 'Family Place Parenting Collection']:
+            with self.subTest(material=material):
+                item = dict(branch='Central', material_type=material, raw_status='Available')
+                r = self.result(entry(record(items=[item], expected_copies=1)), branch='Central')
+                self.assertEqual((r['status_code'], r['completeness'], r['confirmed_available'], r['total']),
+                                 ('available', 'complete', 1, 1))
+                digital = self.result(entry(record(format='DVD', items=[item])))
+                self.assertEqual(digital['status_code'], 'no_print_match')
+
+    def test_explicit_float_hub_unavailable_status_keeps_its_detail(self):
+        r = self.result(entry(record('Unavailable – item sent to float hub')))
+        self.assertEqual((r['status_code'], r['completeness']), ('held_unavailable', 'complete'))
+        self.assertEqual(r['editions'][0]['items'][0]['raw_status'], 'Unavailable – item sent to float hub')
+
     def test_large_print_is_separate_even_when_format_books(self):
         r = self.result(entry(record(), record(record_id='1001', edition='Large print')))
         self.assertEqual(len(r['editions']), 2)
         self.assertEqual(r['confirmed_available'], 2)
+
+    def test_observed_regular_print_record_format_is_eligible(self):
+        r = self.result(entry(record(format='Regular print')))
+        self.assertEqual((r['status_code'], r['completeness'], r['confirmed_available']),
+                         ('available', 'complete', 1))
+
+    def test_observed_teen_book_materials_are_print(self):
+        for material in ['Teen Book', 'Notable Teen book', 'New teen books']:
+            with self.subTest(material=material):
+                r = self.result(entry(record(items=[dict(branch='Looscan', material_type=material, raw_status='Available')])))
+                self.assertEqual((r['status_code'], r['completeness']), ('available', 'complete'))
 
     def test_item_id_deduplication_across_records(self):
         a = record(); a['items'][0]['item_id'] = 'copy-1'
@@ -260,7 +286,7 @@ class EvidenceTests(unittest.TestCase):
         self.assertEqual(self.result(entry(record('Due 99/99/26')))['status_code'], 'unable_to_verify')
 
     def test_unknown_language_labels_are_unresolved(self):
-        for language in [' ', 'Unknown', 'Searching...']:
+        for language in [' ', 'Unknown', 'Searching...', 'Undetermined']:
             with self.subTest(language=language):
                 self.assertEqual(self.result(entry(record(language=language)))['status_code'], 'unable_to_verify')
 

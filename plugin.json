@@ -24,7 +24,7 @@
         "termsOfServiceURL": "https://github.com/mit112/hpl-physical-book-check/blob/main/TERMS.md"
       },
       "publication": {
-        "release_notes": "Add a resumable batch queue and executable completion gate. Preserve award labels, defer isolated access failures, and require observed blocker evidence for incomplete runs. Host invocation and live retrieval remain host responsibilities.",
+        "release_notes": "Add host-executed live browser batches with durable observations, explicit identity review, bounded recovery and resumable completion checks. Fresh Codex execution and saved resume verified; automatic installed ChatGPT invocation remains unverified.",
         "countries": [
           "US"
         ]
@@ -35,6 +35,6 @@
     }
   },
   "name": "hpl-physical-book-check",
-  "version": "1.3.9",
+  "version": "1.4.0",
   "license": "MIT"
 }
