@@ -1,6 +1,6 @@
 # Try a book search and tell Mit how it went
 
-**New here? [Start with setup](INSTALL.md).** This is an early test version, **1.3.7**. It helps check printed books at Houston Public Library using ChatGPT or Codex. Setup may need help and does not work with every account yet.
+**New here? [Start with setup](INSTALL.md).** This is an early test version, **1.3.8**. It helps check printed books at Houston Public Library using ChatGPT or Codex. Setup may need help and does not work with every account yet.
 
 ## 1. Ask about a book
 
@@ -12,7 +12,7 @@ Or use a book you want to read. Include the title, author if you know it, and br
 
 ## 2. Look at the answer
 
-Was it easy to understand? Did it include a library catalog link you could open? Did it explain whether it found a copy or could not finish checking?
+Could you understand the result from the opening sentence or two? Were **Details** easy to find, including a catalog link you could open? When present, did **Also useful** answer a likely next question? Did it explain whether it found a copy or could not finish checking?
 
 **“Unable to verify” does not mean there are no copies.** It means the check was incomplete. Availability can change; check the linked catalog before making a trip. No library login is needed, and this tool does not place holds.
 
