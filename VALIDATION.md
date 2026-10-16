@@ -1,11 +1,27 @@
-# Validation scope — 1.3.6
+# Validation scope
 
 The optional processor and its regression tests are byte-identical to private 1.3.4. Its 54 tests use synthetic and historical public catalog evidence, not current holdings. The processor has not received the separate retrieval prototype's extra children's-print aliases or any guarded browser implementation.
 
 Version 1.3.6 adds the repository marketplace, friend installation/testing docs, and listing clarification. The publisher's Codex CLI 0.160.1 discovered the local marketplace and its available 1.3.6 plugin using temporary command-line configuration overrides. This did not install the plugin or change the user's persistent marketplace settings. A listed plugin is not proof of installation, skill activation or live catalog access.
 
-The full gate runs the processor suite and actual ZIP inventory, manifests, icon and marketplace routing checks. It includes rejection controls for a forbidden file, private app binding and wrong marketplace path. CLI catalog discovery is a separate runtime smoke check. Friend-account installation, private ZIP import, and live lookups are pending the tests in FRIEND-TESTING.md. No cross-host, unattended or complete-recall certification is claimed.
+The full gate runs the processor suite and actual ZIP inventory, manifests, icon and marketplace routing checks. It includes rejection controls for a forbidden file, private app binding and wrong marketplace path. CLI catalog discovery is a separate runtime smoke check. Plugin Creator accepted the ChatGPT-specific ZIP on Mit's account; installation and live lookups on a new user's account remain pending the tests in FRIEND-TESTING.md. No cross-host, unattended or complete-recall certification is claimed.
 
 The OpenAI portal's October 14 eligibility restriction prevents skills-only directory submission at this time for the observed draft. Pricing wording has been removed from this release's listing and its purpose clarified, but no fresh portal scan or acceptance is claimed. Published support/privacy/terms pages remain in place. GitHub distribution is separate from directory approval.
 
 Unknown labels, reference eligibility, raw statuses and incomplete evidence remain gaps. Keep incomplete negatives Unable to verify and incomplete totals unknown. Run `python3 verify.py` for the full offline gate. No new live catalog searches are part of this packaging update.
+
+## Published guide and distribution — October 15, 2026
+
+[PR #1](https://github.com/mit112/hpl-physical-book-check/pull/1) merged as `1c56eab`, establishing the guide and distribution baseline for the answer-format changes. It pointed INSTALL.md at the ChatGPT ZIP and the tested setup message/order, and linked both videos from README.md.
+
+The [v1.3.7 release](https://github.com/mit112/hpl-physical-book-check/releases/tag/v1.3.7) contains the additional ChatGPT ZIP, its checksum and both revised videos. Its notes point ChatGPT users at the correct ZIP and link the videos and setup guide on `main`. The original Codex ZIP retains its October 14 upload/update timestamp. The downloaded ChatGPT ZIP matches its published SHA-256 checksum: all 23 included files are byte-identical to `v1.3.7`, and the only omitted tagged file is `.agents/plugins/marketplace.json`.
+
+The producer reports that the revised introduction is 31.3 seconds and walkthrough 89.4 seconds, both with the repository URL and ChatGPT filename on the end cards, and that the separate media project's `python3 src/verify.py` passed. That media check was not rerun in this repository. These publication checks do not validate live catalog lookup or fresh-account installation.
+
+## 1.3.8 answer presentation — October 15, 2026
+
+The source now routes response composition and bounded related checks through `references/answer-format.md`, which is included in both release ZIPs. The processor and its 54 tests are unchanged. The full offline gate passes with the installed Python 3.14 runtime: a 25-file Codex ZIP, a 24-file ChatGPT ZIP, byte-identical shared files, and rejection controls for a forbidden file, private binding, wrong marketplace path and a marketplace catalog in a ChatGPT ZIP. The new variant check failed against the old builder before the implementation. The Mac's default `python3` is 3.9, below the optional helper's documented 3.10+ requirement; the installed `python3.14` was used.
+
+Before/after simulated response exercises cover a complete positive, an access-blocked incomplete check, a quick positive, a three-book list and ambiguous identity. Additional exercises cover “just the answer,” an explicit branch/edition limit and an available reference copy with unknown borrowing eligibility. The baseline exposed a six-column list table and zero-filled status buckets; the updated answers put the decision first, separate supporting evidence and related findings, and propose bounded official-source follow-ups. Quick and ambiguous cases propose no further retrieval. Missing links, times and eligibility facts stay unknown.
+
+These exercises evaluate answer composition and proposed retrieval decisions from supplied evidence. They are not automated assertions about model output, live searches, executed enrichment, or validation in an installed ChatGPT/Codex host. Existing 1.3.7 downloads retain their original contents; installations need an update to receive 1.3.8.

@@ -1,12 +1,23 @@
 # Changelog
 
-## Unreleased — October 15, 2026
+## 1.3.8 — October 15, 2026
 
-- Point ChatGPT setup at `hpl-physical-book-check-1.3.7-chatgpt.zip`, the 1.3.7 files without the Codex marketplace catalog. Plugin Creator rejected the plain 1.3.7 ZIP and accepted this one.
-- Use the tested Plugin Creator setup message and step order.
-- Link a 30-second introduction and a 90-second setup walkthrough video.
+- Lead book-search answers with the practical result, then Details and Also useful. Keep uncertainty upfront and list tables compact, with coverage and edition evidence below.
+- Gather a few relevant follow-up facts during the same read-only lookup, reusing evidence before checking additional HPL sources. Preserve quick-check stopping, identity clarification, explicit scope and catalog recovery limits.
+- Include the answer guide in release packaging and exercise the response format with simulated cases.
+- Build and validate both Codex and ChatGPT ZIPs. Verify that every shared file is identical and only the Codex marketplace catalog is omitted from the ChatGPT ZIP.
+- Point setup instructions at the 1.3.8 packages and tag. Keep the existing videos and all 1.3.7 release assets intact.
 
-Documentation only. The 1.3.7 package and its book-search behavior are unchanged.
+The evidence processor is unchanged. Existing 1.3.7 installations need an update to receive the new answer format. Simulated response exercises and the offline gate do not certify live lookup or fresh-account installation.
+
+## Published guide and distribution update — October 15, 2026
+
+- Publish `hpl-physical-book-check-1.3.7-chatgpt.zip` and its SHA-256 checksum as additional v1.3.7 release assets. Its 23 files are identical to the tag; only `.agents/plugins/marketplace.json` is omitted. Plugin Creator rejected the plain ZIP and accepted this one. The original Codex ZIP is unchanged.
+- Merge [PR #1](https://github.com/mit112/hpl-physical-book-check/pull/1): point INSTALL.md at the ChatGPT ZIP, use the tested setup message and step order, and link both videos from README.md.
+- Publish the revised introduction (31.3 seconds) and walkthrough (89.4 seconds), with the repository URL and ChatGPT filename on the end cards. The closing line directs viewers to the setup guide at the link on screen.
+- Update the v1.3.7 release notes with the ChatGPT ZIP pointer, video links and setup guide on `main`.
+
+These distribution and guide changes are already live on GitHub; they do not change the released book-search instructions or evidence processor.
 
 ## 1.3.7 — October 14, 2026
 

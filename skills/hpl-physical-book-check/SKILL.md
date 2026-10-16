@@ -5,7 +5,7 @@ description: "Use when a user asks for physical print-book availability, branch 
 
 # HPL Physical Book Check
 
-Workflow release: **1.3.7**.
+Workflow release: **1.3.8**.
 
 ## Skill loading and recovery
 
@@ -66,13 +66,11 @@ Keep raw unavailable statuses distinct: due/checked out, on hold for someone, in
 
 Before composing the answer, reconcile each work's proposed verdict with its pending ledger entries using the Work reference's decision checkpoint. A visited page is not necessarily screened. Continue resolvable pending work in thorough mode; if a real access or host limit prevents completion, state that cause and the remaining work. Do not wait for a later diagnostic request to disclose a known gap. Diagnostic corrections must identify an actual original assertion and its conflicting evidence; missing retained detail alone does not prove a skipped action.
 
-1. **One book:** lead with its branch verdict, then inspected edition/count/call number and record link, confirmed alternatives when useful, scope and actual America/Chicago check time. End with a coverage sentence: “Screened X/Y pages; inspected A/B matching print editions; pending: ...”. Unknown denominators stay unknown. For incomplete negatives lead “Unable to verify”; use “No branch copy in the inspected edition” only as supporting detail. A quick positive reports a confirmed minimum and unknown title-wide total. Snapshot bucket counts are internal for one book; do not overwhelm the answer with five zero-filled categories.
-2. **Several books:** provide scope/check interval and reconciled status/completeness counts, then one table containing every unique requested work, branch verdict, edition counts/call numbers, confirmed alternatives, inspected links, and coverage/pending notes. Use “total unknown” for incomplete totals and “not checked” for blocked titles. Counts in each exclusive bucket set sum to requested unique works.
-3. **Next step:** highlight available choices when useful and explain material gaps. Official guidance is needed for conditional hold/pickup advice; do not promise transfers or future availability. Availability can change after the check; no holds were placed. Full activity/coverage details are available on request from the ledger; never claim access to another chat's hidden activity log.
+Read the [answer and follow-up guide](references/answer-format.md) before optional related checks and the final answer. Lead with the practical answer in one or two sentences. Put supporting evidence under **Details**, then useful related findings under **Also useful** when there are any. Keep material uncertainty in the opening answer. For lists, lead with the available choices and a compact table covering every requested work; put edition and coverage detail below it.
+
+During the same lookup, quietly gather a few facts that answer likely next questions about this work or location, following the guide's limits. Keep the requested branch, language, format and check mode intact. Quick positives still stop immediately. Related checks have their own evidence and cannot close gaps in the requested lookup.
+
+Retain full activity/coverage details in the ledger for a requested audit; never claim access to another chat's hidden activity log. Official guidance is needed for conditional hold/pickup advice; do not promise transfers or future availability.
 
 For supplied fixtures, identify results as simulated and use fixture times/URLs only when provided. Do not present fixture output as a live check.
-
-## Example
-
-At Heights, a regular-print edition has one item Available and another Due 10/23/26; a large-print record is unresolved. Report “Available at Heights — partial check,” “1 confirmed available; total unknown,” the regular-print call number, and the unresolved large-print record. Do not report “1 of 2 total” across the whole title or an exhaustive list of other available branches.
 

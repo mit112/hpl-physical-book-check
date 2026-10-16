@@ -41,7 +41,7 @@ Reconcile the proposed answer with the ledger while the observations are still a
 | Check | Action |
 | --- | --- |
 | A page was visited but some cards were truncated, missing or not screened | Keep that page open in coverage; recover its remaining cards within the access budget. Do not count it as fully screened. |
-| A known in-scope candidate or its holdings remains unresolved | Continue in thorough mode while access works. If blocked, lead a negative with Unable to verify and name the pending evidence and stopping cause. |
+| A known in-scope candidate or its holdings remains unresolved | Continue in thorough mode while access works. If blocked without a confirmed positive, explain upfront that availability could not be verified and name the pending evidence and stopping cause. |
 | A branch-filtered search is empty | Clear the branch limit before a title-wide negative; branch membership comes from inspected item rows. |
 | A matching query redirects directly to one record | Record the redirect, record ID, identity and holdings coverage. No numbered results page is required; do not invent a page denominator. |
 | A candidate is excluded by observed identity or format | Retain the exclusion reason; its uninspected holdings are not a gap for the requested work. |

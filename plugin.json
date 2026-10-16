@@ -24,7 +24,7 @@
         "termsOfServiceURL": "https://github.com/mit112/hpl-physical-book-check/blob/main/TERMS.md"
       },
       "publication": {
-        "release_notes": "Simplify the introduction, installation guide, plugin description, feedback, and support for library users. Keep technical details expandable. Book-search instructions and evidence processor behavior are unchanged; setup and live catalog access still depend on the account and app.",
+        "release_notes": "Lead with a direct answer, put evidence under Details, and show useful related findings separately. Gather bounded follow-up facts during thorough lookups while preserving quick-check stopping and evidence requirements. The evidence processor is unchanged.",
         "countries": [
           "US"
         ]
@@ -35,6 +35,6 @@
     }
   },
   "name": "hpl-physical-book-check",
-  "version": "1.3.7",
+  "version": "1.3.8",
   "license": "MIT"
 }
