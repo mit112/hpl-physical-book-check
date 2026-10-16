@@ -5,7 +5,7 @@ description: "Use when a user asks for physical print-book availability, branch 
 
 # HPL Physical Book Check
 
-Workflow release: **1.3.8**.
+Workflow release: **1.3.9**.
 
 ## Skill loading and recovery
 
@@ -21,7 +21,7 @@ Default to **thorough**: inspect all scoped print editions and applicable search
 
 If a quick request accepts any one of several volumes, the first qualifying item satisfies the whole request; stop further volume searches.
 
-For long lists or refresh/resume requests, read [evidence toolkit](references/evidence-toolkit.md). When a local Python executor is available, use the bundled processor to count, classify, checkpoint, and reconcile results from observed evidence. When it is unavailable, follow the same ledger contract manually; the lookup must remain usable without Python. The processor cannot verify identity or collect live catalog data by itself.
+For lists or refresh/resume requests, read [evidence toolkit](references/evidence-toolkit.md) **before the first catalog search**. Establish the entire requested title manifest first, preserving award year/category labels. When a host Python executor is available, initialize the saved ledger and use its `next` / retrieve / ingest / mark loop, then `finalize` before answering. A diagnostic `report` is not a completion check. When execution is unavailable, follow the same queue and stopping contract manually; users need no Python installation. The processor cannot verify identity or collect live catalog data by itself.
 
 ## Scope and branch
 
@@ -40,7 +40,7 @@ For a request distinguishing a collected work from individual volumes, keep a se
 2. Maintain one ledger entry per unique requested work (title plus author/work identity): loaded workflow release, title/author/language, queries attempted, actual search pages screened, candidate record IDs with included/excluded/unresolved decisions and reasons, inspected matching editions and item rows, pending records/pages, check interval, and completeness (`complete`, `partial`, or `unverified`). Record branch, raw status, due date, call/shelf number, and item identifier when visible. Unknown values remain unknown. Completion requires a closed candidate list: every candidate is inspected or excluded with observed evidence, and every relevant page is screened. A page count alone is not evidence of edition coverage.
 3. Search title plus author, preferably separate fields in Work's observed Advanced Search for short/common titles. Verify the new results or detail state before reading records; never reuse the previous page still on screen. Confirm identity, language, format, and edition. For no verified match or restrictive author-initial results, use title-only or a known ISBN and verify author. Title-only can widen a short-title search; compare observed result sizes. Confirm an illustrated book is the original text, rather than an adaptation: author attribution alone is insufficient. Inspect all scoped print editions/pages in thorough mode; clear accidental branch/availability filters before negative conclusions. Follow the Work reference for efficient page screening and targeted detail inspection.
 4. Deduplicate by catalog record ID/URL and item identifier when shown. Count distinct rows within a record; never count the same item again from search and detail views. If cross-record duplication cannot be resolved, show edition counts separately. Conflicting statuses for the same item are unresolved, even if one observation says Available. Reuse inspected records within this run. On a new run, retain bibliographic identity but invalidate old statuses and coverage; record the actual observation time rather than relabeling cached data as fresh.
-5. For lists, work in batches of up to 10 unique works, preserve the ledger, and continue through the full requested set when access works. Check catalog access once before starting a large batch. Follow bounded recovery in the access reference; a site-wide failure should not trigger identical failed checks for every title.
+5. For lists, work in batches of up to 10 unique works from the saved queue; checkpoint evidence after each work and continue through the full requested set when access works. Re-read `next` after every batch; do not stop at a sample, the first year, a positive item in thorough mode, or an arbitrary elapsed time. Partial findings alone do not authorize ending the request. Requested other-branch alternatives are part of the primary lookup. Defer optional enrichment until the queue is resolved or genuinely blocked. Check catalog access once before starting a large batch. Follow bounded recovery in the access reference; record isolated failures per work and continue other titles, while a site-wide failure stops the batch once.
 
 ## Classify from evidence
 
@@ -64,7 +64,7 @@ Keep raw unavailable statuses distinct: due/checked out, on hold for someone, in
 
 ## Output contract
 
-Before composing the answer, reconcile each work's proposed verdict with its pending ledger entries using the Work reference's decision checkpoint. A visited page is not necessarily screened. Continue resolvable pending work in thorough mode; if a real access or host limit prevents completion, state that cause and the remaining work. Do not wait for a later diagnostic request to disclose a known gap. Diagnostic corrections must identify an actual original assertion and its conflicting evidence; missing retained detail alone does not prove a skipped action.
+Before composing the answer, reconcile each work's proposed verdict with its pending ledger entries using the Work reference's decision checkpoint and, when executing the helper, run `finalize`. State `continue` means execute the next batch; `blocked` permits only an explicitly incomplete answer naming the recorded cause and remaining work; `complete` means the requested stopping rule was met, with any quick-check coverage still partial. A visited page is not necessarily screened. Continue resolvable pending work in thorough mode; if a real access or host limit prevents completion, checkpoint its actual tool/page evidence. An isolated failure cannot excuse skipping accessible works. Do not invent a limit from list length, time spent, or a wish to answer. Preserve the ledger through a host-supported artifact and give its actual resume location; if persistence is unavailable, say so. Do not wait for a later diagnostic request to disclose a known gap. Diagnostic corrections must identify an actual original assertion and its conflicting evidence; missing retained detail alone does not prove a skipped action.
 
 Read the [answer and follow-up guide](references/answer-format.md) before optional related checks and the final answer. Lead with the practical answer in one or two sentences. Put supporting evidence under **Details**, then useful related findings under **Also useful** when there are any. Keep material uncertainty in the opening answer. For lists, lead with the available choices and a compact table covering every requested work; put edition and coverage detail below it.
 

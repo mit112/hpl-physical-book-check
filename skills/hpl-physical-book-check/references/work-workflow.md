@@ -38,6 +38,8 @@ When supported, perform read-only extraction of rendered metadata, links, header
 
 Reconcile the proposed answer with the ledger while the observations are still available:
 
+For lists, apply the [batch completion gate](evidence-toolkit.md#batch-loop-and-completion-gate) first. An actionable queue means continue retrieving, not write a partial final answer. Resolve each title and requested branch alternative before optional enrichment. An isolated record failure defers only that work; continue other accessible works. Save the actual failure evidence before a blocked answer, and preserve the entire manifest and ledger for resume.
+
 | Check | Action |
 | --- | --- |
 | A page was visited but some cards were truncated, missing or not screened | Keep that page open in coverage; recover its remaining cards within the access budget. Do not count it as fully screened. |

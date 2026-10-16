@@ -3,7 +3,7 @@ from pathlib import Path, PurePosixPath
 import argparse,json,re,stat,struct,zipfile
 
 ROOT=Path(__file__).resolve().parent
-FILES=['plugin.json','.codex-plugin/plugin.json','README.md','SUPPORT.md','PRIVACY.md','TERMS.md','LICENSE','VALIDATION.md','CHANGELOG.md','.gitignore','build_release.py','verify.py','assets/icon.png','assets/setup/chatgpt-plugin-creator.png','assets/setup/chatgpt-attach-package.png','assets/setup/chatgpt-try-in-chat.png','skills/hpl-physical-book-check/SKILL.md','skills/hpl-physical-book-check/references/catalog-access.md','skills/hpl-physical-book-check/references/evidence-toolkit.md','skills/hpl-physical-book-check/references/work-workflow.md','skills/hpl-physical-book-check/references/answer-format.md','skills/hpl-physical-book-check/scripts/hpl_evidence.py','tests/test_evidence.py','tests/fixtures/dune-live.json','tests/fixtures/employees-live.json','INSTALL.md','FRIEND-TESTING.md','.agents/plugins/marketplace.json']
+FILES=['plugin.json','.codex-plugin/plugin.json','README.md','SUPPORT.md','PRIVACY.md','TERMS.md','LICENSE','VALIDATION.md','CHANGELOG.md','.gitignore','build_release.py','verify.py','assets/icon.png','assets/setup/chatgpt-plugin-creator.png','assets/setup/chatgpt-attach-package.png','assets/setup/chatgpt-try-in-chat.png','skills/hpl-physical-book-check/SKILL.md','skills/hpl-physical-book-check/references/catalog-access.md','skills/hpl-physical-book-check/references/evidence-toolkit.md','skills/hpl-physical-book-check/references/work-workflow.md','skills/hpl-physical-book-check/references/answer-format.md','skills/hpl-physical-book-check/scripts/hpl_evidence.py','tests/test_evidence.py','tests/test_work_queue.py','tests/fixtures/dune-live.json','tests/fixtures/employees-live.json','INSTALL.md','FRIEND-TESTING.md','.agents/plugins/marketplace.json']
 
 def inspect(path: Path, chatgpt: bool=False) -> dict:
  with zipfile.ZipFile(path) as z:
@@ -20,7 +20,7 @@ def inspect(path: Path, chatgpt: bool=False) -> dict:
     assert not re.search(r'BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|sk-[A-Za-z0-9]{32,}|\x2fUsers\x2f|skill:[/]{2}plugins_',text), 'Nonportable or sensitive content'
   m=json.loads(z.read(prefix+'plugin.json')); legacy=json.loads(z.read(prefix+'.codex-plugin/plugin.json'))
   assert m['name']=='hpl-physical-book-check' and re.fullmatch(r'\d+\.\d+\.\d+',m['version'])
-  assert m['version']==legacy['version']=='1.3.8'
+  assert m['version']==legacy['version']=='1.3.9'
   assert set(m)<={'$schema','name','version','description','author','homepage','repository','license','keywords','extensions'}, 'Nonportable manifest fields'
   for v in [m,legacy]:
    assert v.get('apps') is None and v.get('extensions',{}).get('com.openai',{}).get('apps') is None, 'Private app bindings'
@@ -50,7 +50,7 @@ def inspect(path: Path, chatgpt: bool=False) -> dict:
   assert png[:8]==b'\x89PNG\r\n\x1a\n' and len(png)<=5*1024*1024
   width,height=struct.unpack('>II',png[16:24]); assert 256<=width==height<=4096
   skill=z.read(prefix+'skills/hpl-physical-book-check/SKILL.md').decode()
-  assert 'name: hpl-physical-book-check' in skill and 'Workflow release: **1.3.8**.' in skill
+  assert 'name: hpl-physical-book-check' in skill and 'Workflow release: **1.3.9**.' in skill
   for link in re.findall(r'\]\((references/[^)]+)\)',skill): assert prefix+'skills/hpl-physical-book-check/'+link in names
   return dict(version=m['version'],files=len(names),icon=dict(width=width,height=height,bytes=len(png)),listing_urls_complete=all(urls.values()),subtitle_characters=len(i['shortDescription']))
 
@@ -66,5 +66,5 @@ if __name__=='__main__':
  parser.add_argument('path',nargs='?',type=Path)
  parser.add_argument('--chatgpt',action='store_true',help='Omit the Codex marketplace catalog for ChatGPT import')
  args=parser.parse_args()
- dest=args.path or ROOT.parent/('hpl-physical-book-check-1.3.8'+('-chatgpt' if args.chatgpt else '')+'.zip')
+ dest=args.path or ROOT.parent/('hpl-physical-book-check-1.3.9'+('-chatgpt' if args.chatgpt else '')+'.zip')
  print(json.dumps(build(dest,chatgpt=args.chatgpt),indent=2))

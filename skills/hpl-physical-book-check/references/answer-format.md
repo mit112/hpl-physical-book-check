@@ -2,6 +2,8 @@
 
 The opening should answer the user's actual question without requiring them to read a research report. Keep supporting evidence available below it. These layers change presentation, not the evidence needed for a verdict.
 
+For lists, apply the toolkit's `finalize` decision before composing: continue actionable work, or report a genuinely blocked checkpoint as incomplete. A candid partial answer alone does not satisfy an unfinished request. Include the actual checkpoint location for resume and never imply that work continues after the answer.
+
 ## Gather useful follow-up facts
 
 Do this quietly during the current read-only lookup, before answering. First finish the requested check or reach its permitted stopping point. Reuse inspected item rows and branch information; additional research should answer a likely next question about the same work or location.

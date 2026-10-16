@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.3.9 — October 16, 2026
+
+- Build a resumable queue from saved per-work evidence, returning at most ten actionable works without consuming them on read.
+- Add `finalize`: unfinished work exits 1 with `continue` or `blocked`; only the requested stopping rule exits 0. Retain partial coverage for quick positives and support explicit quick requests accepting any one work.
+- Record access/host-limit checkpoints with cause, observed evidence, run and time. Defer isolated failures while continuing other works; resume or refresh without accepting stale blockers or inventory.
+- Preserve all award labels when a work wins multiple categories or years. Establish the full manifest before catalog searches and route list lookups through the executable gate when a host executor is available.
+- Add a 79-work regression, malformed-input and blocker controls, mutation checks, and a consuming-assistant simulation. Package the new tests in both ZIP variants.
+
+Distribute both ZIP variants and SHA-256 checksums under `v1.3.9`; the setup guide and friend-test instructions now point at this release. Existing private imports need an explicit update. A skills-only plugin still cannot enforce host tool invocation or certify supplied observations.
+
 ## Video and repository update — October 16, 2026
 
 - Re-cut the introduction (31.3 seconds) and walkthrough (89.2 seconds) so narration, step titles and end cards no longer name a plugin version: they say to download the file ending in `-chatgpt.zip` from the guide and check that the version matches it. The October 14 screenshots still show 1.3.7 as captured.

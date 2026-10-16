@@ -1,6 +1,6 @@
 # Try a book search and tell Mit how it went
 
-**New here? [Start with setup](INSTALL.md).** This is an early test version, **1.3.8**. It helps check printed books at Houston Public Library using ChatGPT or Codex. Setup may need help and does not work with every account yet.
+**New here? [Start with setup](INSTALL.md).** This is an early test version, **1.3.9**. It helps check printed books at Houston Public Library using ChatGPT or Codex. Setup may need help and does not work with every account yet.
 
 ## 1. Ask about a book
 

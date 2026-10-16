@@ -265,7 +265,7 @@ def classify(entry, branch, run_id, language='English', mode='thorough', not_bef
                   no_branch_copy='No ' + label + ' copy shown', no_print_match='No matching print record found')
     other = sorted({x['branch'] for x in all_items if x['kind'] == 'available' and norm(x['branch']) not in NON_BRANCH
                     and (branch is None or norm(x['branch']) != norm(branch))})
-    return dict(key=entry.get('key'), title=entry.get('title'), author=entry.get('author'),
+    return dict(key=entry.get('key'), title=entry.get('title'), author=entry.get('author'), labels=entry.get('labels', []),
                 status_code=code, status=labels[code], completeness=coverage,
                 confirmed_available=len(available), total=len(selected) if complete and scoped else None,
                 editions=editions, other_available_branches=other, gaps=list(dict.fromkeys(gaps)))
@@ -290,10 +290,68 @@ def pending_keys(ledger):
     return [r['key'] for r in summarize(ledger)['results'] if r['completeness'] != 'complete']
 
 
+def validate_blocker(blocker: dict, ledger: dict) -> None:
+    if not isinstance(blocker, dict) or blocker.get('kind') not in {'access', 'host_limit'}:
+        raise ValueError('Blocker kind must be access or host_limit')
+    for field in ['detail', 'evidence']:
+        if not isinstance(blocker.get(field), str) or not blocker[field].strip():
+            raise ValueError('Blocker requires nonblank ' + field)
+    if blocker.get('run_id') != ledger['run_id']:
+        raise ValueError('Blocker belongs to a different run')
+    observed = timestamp(blocker.get('checked_at'))
+    if not timestamp(ledger['started_at']) <= observed <= datetime.now(timezone.utc):
+        raise ValueError('Blocker timestamp must fall within the current run')
+
+
+def work_queue(ledger: dict) -> dict:
+    """Derive resumable work from evidence; reading a batch never consumes it."""
+    if not isinstance(ledger, dict):
+        raise ValueError('Ledger must be a JSON object')
+    titles = ledger.get('titles')
+    if not isinstance(titles, list) or not titles:
+        raise ValueError('An empty title queue cannot establish completion')
+    seen = set()
+    for title in titles:
+        key = title.get('key') if isinstance(title, dict) else None
+        if not isinstance(key, str) or not key.strip() or key in seen:
+            raise ValueError('Every work requires a unique nonblank key')
+        seen.add(key)
+        if 'blocker' in title:
+            validate_blocker(title['blocker'], ledger)
+    if 'blocker' in ledger:
+        validate_blocker(ledger['blocker'], ledger)
+    any_one = ledger.get('any_one', False)
+    if type(any_one) is not bool or (any_one and ledger.get('mode') != 'quick'):
+        raise ValueError('any_one requires explicit quick mode')
+    report = summarize(ledger)
+    accepted = [r for r in report['results'] if r['completeness'] == 'complete'
+                or (report['mode'] == 'quick' and r['status_code'] == 'available')]
+    accepted_keys = {r['key'] for r in accepted}
+    goal_met = any_one and any(r['status_code'] == 'available' for r in accepted)
+    remaining = [] if goal_met else [r for r in report['results'] if r['key'] not in accepted_keys]
+    entries = {t['key']: t for t in titles}
+    actionable = []
+    blockers = []
+    for result in remaining:
+        blocker = ledger.get('blocker', entries[result['key']].get('blocker'))
+        if blocker is not None:
+            blockers.append(dict(key=result['key'], **blocker))
+        else:
+            actionable.append(result)
+    state = 'continue' if actionable else ('blocked' if remaining else 'complete')
+    batch = [{field: result[field] for field in ['key', 'title', 'author', 'labels', 'completeness', 'gaps']}
+             for result in actionable[:10]]
+    return dict(state=state, requested=report['requested'], satisfied=len(accepted),
+                remaining=len(remaining), actionable=len(actionable), next_batch=batch,
+                blockers=blockers, report=report)
+
+
 def refresh_ledger(ledger):
     ledger['run_id'] = str(uuid.uuid4())
     ledger['started_at'] = datetime.now(timezone.utc).isoformat()
+    ledger.pop('blocker', None)
     for title in ledger['titles']:
+        title.pop('blocker', None)
         for flag in ['search_complete', 'fallback_complete', 'editions_complete']:
             title[flag] = False
         title['issues'] = []
@@ -315,31 +373,38 @@ def read_json(path):
     return json.loads(Path(path).read_text(encoding='utf-8'))
 
 
-def initialize(titles, branch, language, mode):
+def initialize(titles: list[dict], branch: str | None, language: str,
+               mode: str, any_one: bool = False) -> dict:
     if branch is not None and (not isinstance(branch, str) or not branch.strip()):
         raise ValueError('Choose a nonblank branch or --all-branches')
     if not isinstance(language, str) or not language.strip() or norm(language) in LOADING:
         raise ValueError('Choose an explicit scope language')
     if mode not in {'quick', 'thorough'}:
         raise ValueError('Choose quick or thorough mode')
+    if type(any_one) is not bool or (any_one and mode != 'quick'):
+        raise ValueError('--any-one requires explicit quick mode')
     if not isinstance(titles, list) or not titles:
         raise ValueError('Provide a nonempty array of title/author objects')
     entries = []
-    seen = set()
+    seen = {}
     for book in titles:
         if not isinstance(book, dict) or not isinstance(book.get('title'), str) or not book['title'].strip():
             raise ValueError('Each title requires a nonblank title string')
         if not isinstance(book.get('author', ''), str):
             raise ValueError('author must be text')
+        labels = book.get('labels', [])
+        if not isinstance(labels, list) or any(not isinstance(x, str) or not x.strip() for x in labels):
+            raise ValueError('labels must be an array of nonblank strings')
         identity = norm(book['title']) + '\0' + norm(book.get('author', ''))
         if identity in seen:
+            seen[identity]['labels'] = list(dict.fromkeys(seen[identity]['labels'] + labels))
             continue
-        seen.add(identity)
         entries.append(dict(key=hashlib.sha256(identity.encode()).hexdigest()[:16], title=book['title'].strip(),
-                            author=book.get('author', '').strip(), search_complete=False, fallback_complete=False,
+                            author=book.get('author', '').strip(), labels=list(dict.fromkeys(labels)), search_complete=False, fallback_complete=False,
                             editions_complete=False, records=[], issues=[]))
+        seen[identity] = entries[-1]
     return dict(schema_version=1, run_id=str(uuid.uuid4()), started_at=datetime.now(timezone.utc).isoformat(),
-                branch=branch, language=language, mode=mode, titles=entries)
+                branch=branch, language=language, mode=mode, any_one=any_one, titles=entries)
 
 
 def main(argv=None):
@@ -348,9 +413,16 @@ def main(argv=None):
     init = commands.add_parser('init'); init.add_argument('--titles', required=True); init.add_argument('--output', required=True)
     scope = init.add_mutually_exclusive_group(required=True); scope.add_argument('--branch'); scope.add_argument('--all-branches', action='store_true')
     init.add_argument('--language', default='English'); init.add_argument('--mode', choices=['quick', 'thorough'], default='thorough')
+    init.add_argument('--any-one', action='store_true', help='Only for an explicit quick request accepting any one listed work')
     init.add_argument('--force', action='store_true')
     report = commands.add_parser('report'); report.add_argument('ledger')
     queue = commands.add_parser('pending'); queue.add_argument('ledger')
+    for name in ['next', 'finalize']:
+        command = commands.add_parser(name); command.add_argument('ledger')
+    checkpoint = commands.add_parser('checkpoint'); checkpoint.add_argument('ledger'); checkpoint.add_argument('--key')
+    checkpoint.add_argument('--kind', required=True, choices=['access', 'host_limit'])
+    checkpoint.add_argument('--detail', required=True); checkpoint.add_argument('--evidence', required=True)
+    resume = commands.add_parser('resume'); resume.add_argument('ledger'); resume.add_argument('--key')
     refresh = commands.add_parser('refresh'); refresh.add_argument('ledger')
     ingest = commands.add_parser('ingest'); ingest.add_argument('ledger'); ingest.add_argument('--key', required=True); ingest.add_argument('--record', required=True)
     mark = commands.add_parser('mark'); mark.add_argument('ledger'); mark.add_argument('--key', required=True)
@@ -361,7 +433,7 @@ def main(argv=None):
         if args.command == 'init':
             if Path(args.output).exists() and not args.force:
                 raise ValueError('Output exists; choose a new path or explicitly pass --force')
-            value = initialize(read_json(args.titles), args.branch, args.language, args.mode)
+            value = initialize(read_json(args.titles), args.branch, args.language, args.mode, args.any_one)
             write_json(args.output, value)
             print(json.dumps({'run_id': value['run_id'], 'titles': [{'key': x['key'], 'title': x['title']} for x in value['titles']]}))
             return
@@ -370,6 +442,31 @@ def main(argv=None):
             print(json.dumps(summarize(ledger), ensure_ascii=False, indent=2))
         elif args.command == 'pending':
             print(json.dumps(pending_keys(ledger)))
+        elif args.command in {'next', 'finalize', 'checkpoint', 'resume'}:
+            work_queue(ledger)
+            if args.command in {'checkpoint', 'resume'}:
+                target = ledger
+                if args.key is not None:
+                    target = next((t for t in ledger['titles'] if t['key'] == args.key), None)
+                    if target is None:
+                        raise ValueError('Unknown title key')
+                if args.command == 'checkpoint':
+                    blocker = dict(kind=args.kind, detail=args.detail, evidence=args.evidence,
+                                   run_id=ledger['run_id'], checked_at=datetime.now(timezone.utc).isoformat())
+                    validate_blocker(blocker, ledger)
+                    target['blocker'] = blocker
+                else:
+                    target.pop('blocker', None)
+                    if args.key is None:
+                        for title in ledger['titles']:
+                            title.pop('blocker', None)
+                write_json(args.ledger, ledger)
+            progress = work_queue(ledger)
+            if args.command != 'finalize':
+                progress.pop('report')
+            print(json.dumps(progress, ensure_ascii=False, indent=2))
+            if args.command == 'finalize':
+                return 0 if progress['state'] == 'complete' else 1
         elif args.command == 'refresh':
             refresh_ledger(ledger); write_json(args.ledger, ledger)
             print(json.dumps({'run_id': ledger['run_id'], 'pending': pending_keys(ledger)}))
@@ -397,4 +494,4 @@ def main(argv=None):
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())
