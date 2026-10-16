@@ -19,7 +19,7 @@
   "extensions": {
     "com.openai": {
       "publication": {
-        "release_notes": "Add host-executed live browser batches with durable observations, explicit identity review, bounded recovery and resumable completion checks. Unreleased candidate; production ChatGPT loading and execution remain unverified.",
+        "release_notes": "Add host-executed live browser batches with durable observations, explicit identity review, bounded recovery and resumable completion checks. Fresh Codex execution and saved resume verified; automatic installed ChatGPT invocation remains unverified.",
         "countries": [
           "US"
         ]

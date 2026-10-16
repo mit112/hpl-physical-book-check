@@ -8,7 +8,7 @@ The full gate runs the processor suite and actual ZIP inventory, manifests, icon
 
 The OpenAI portal's October 14 eligibility restriction prevents skills-only directory submission at this time for the observed draft. Pricing wording has been removed from this release's listing and its purpose clarified, but no fresh portal scan or acceptance is claimed. Published support/privacy/terms pages remain in place. GitHub distribution is separate from directory approval.
 
-Unknown labels, reference eligibility, raw statuses and incomplete evidence remain gaps. Keep incomplete negatives Unable to verify and incomplete totals unknown. Run `python3 verify.py` for the full offline gate. No new live catalog searches are part of this packaging update.
+Unknown labels, reference eligibility, raw statuses and incomplete evidence remain gaps. Keep incomplete negatives Unable to verify and incomplete totals unknown. Run `python3 verify.py` for the full offline gate. The offline gate performs no live catalog searches; executed live checks are recorded separately below.
 
 ## Published guide and distribution — October 15, 2026
 
@@ -44,12 +44,12 @@ Four temporary script mutations were rejected by the intended assertions: treati
 
 A separate consuming assistant read the updated source skill and references, resumed the two-partial-work fixture ledger, and executed all eight batches using the helper. Its command audit records 79 ingests, 79 coverage marks, queue reads after each batch and a final `complete` exit 0. Retained artifacts independently reconcile 79 complete works, 27 simulated Looscan positives, 52 simulated Heights alternatives, 79 editions and 131 item rows. Every requested work appears in its full result artifact. These fictional records and award labels are not live holdings or actual award results.
 
-The helper validates declared evidence and queue state; it cannot authenticate catalog observations, independently prove a complete award manifest or search coverage, force a host to invoke it, or continue after a host ends a turn. Without an executor, the manual queue contract remains instruction-based and must disclose that the executable gate was unavailable. The consuming-assistant exercise used supplied complete-scope fixtures, not live browser navigation or a hard host limit. Live large-list retrieval in the original ChatGPT host remains unverified. The distribution package and setup guide target `v1.3.9`; account updates retain the existing private plugin identity and audience. A saved account release or marketplace listing alone does not establish live lookup behavior.
+The helper validates declared evidence and queue state; it cannot authenticate catalog observations, independently prove a complete award manifest or search coverage, force a host to invoke it, or continue after a host ends a turn. Without an executor, the manual queue contract remains instruction-based and must disclose that the executable gate was unavailable. The consuming-assistant exercise used supplied complete-scope fixtures, not live browser navigation or a hard host limit. Live large-list retrieval in the original ChatGPT host remains unverified. That distribution package and setup guide targeted `v1.3.9`; account updates retain the existing private plugin identity and audience. A saved account release or marketplace listing alone does not establish live lookup behavior.
 
 
-## 1.4.0 live browser candidate — October 16, 2026
+## 1.4.0 live browser runner — October 16, 2026
 
-**Unreleased; production ChatGPT execution remains unverified.** The private account plugin and GitHub latest release remain 1.3.9. This candidate adds a real host-browser execution path rather than another bookkeeping-only guard. It still depends on the host loading the skill, exposing a permitted CUA tab and allowing Node/Python execution; a skills-only package cannot force invocation outside that contract.
+**Automatic loading and invocation from an installed ChatGPT plugin remain unverified.** Version 1.4.0 adds a real host-browser execution path. It still depends on the host loading the skill, exposing a permitted CUA tab and allowing Node/Python execution; a skills-only package cannot force invocation outside that contract. Publication and the existing private-account update are explicitly authorized for this rollout; they do not certify that remaining host behavior.
 
 The two retained production failures were inspected separately. One reported workflow loading failure and used web lookup; the other retrieved live holdings but ended after one title without closing the requested queue. Retained traces do not expose every loader event or tool output, so the exact loaded releases remain unproven. Account source was verified at 1.3.9; that does not prove which source either failed session used.
 
@@ -59,7 +59,7 @@ Official yearly/category pages established 79 award labels and 76 unique works f
 
 The final live receipt has **61 complete and 15 partial works**, with **28 confirmed Looscan-positive works** across those coverage states. Partial positive counts are minimums; incomplete negatives remain Unable to verify. Catalog gaps include item rows showing only a collection label as Status, missing/undetermined language, and copy counters exceeding all displayed rows. Reopening affected records preserved these gaps. After all works had been collected, the browser transport stalled while an alternate MARC view was attempted; subsequent reopen actions failed before dispatch, and a screenshot timed out and reset the CUA session. The full saved queue ended **blocked**, exit **1**, with all remaining causes retained. It did not pass a complete-availability gate.
 
-The runner was revised as live markup differences were found; frozen intermediate modules and captures are retained locally. The final transport-loss, omitted-edition and missing-browser guards were then tested offline. The exact final source has not completed a new full live sweep or a production ChatGPT trial. This is a candidate validation boundary, not a release-readiness claim.
+The runner was revised as live markup differences were found; frozen intermediate modules and captures are retained locally. The final transport-loss, omitted-edition and missing-browser guards were then tested offline. The exact final source has not completed another full 76-work sweep or an installed ChatGPT trial. The fresh final-source smoke test below covers two titles and saved resume.
 
 ### Automated checks and independent trials
 
@@ -69,4 +69,10 @@ An independent Luna High baseline trial retrieved some live rows but first stopp
 
 The [desktop-only plugin option](https://developers.openai.com/plugins/deploy/desktop-only) was evaluated but not enabled. Changing session eligibility does not demonstrate that a browser is exposed or that this helper runs. No hosted server, browser workaround, security bypass, new account connection or access change was introduced.
 
-Required before release: verify loading from the actual installed candidate in a fresh production ChatGPT session, confirm its permitted browser/runtime, execute multiple batches and a saved resume, and retain the real final receipt. If that host lacks the required capabilities, resolve that deployment constraint explicitly. Do not publish another claimed fix from the local simulation alone.
+### Fresh final-source smoke test
+
+On October 16, 2026, a fresh Codex session directly imported the final runner and used its permitted CUA in-app browser to search The Employees by Olga Ravn and My Friends by Fredrik Backman, English regular and large print, Looscan first with other branches. It executed two separate one-work batches and recreated the runner before reviewing the first work. Resume returned its retained observation without fetching another view; finalization remained `continue` until both works were reviewed.
+
+The final receipt was `complete`, **2 satisfied / 0 remaining**, with three print editions, 45 item rows and ten durable rendered-view captures. Included-record observations span **6:01:37–6:01:59 p.m. CDT**. This run used the exact final runner/processor source, Python 3.14.8 and Node 20.20.2. It did not refresh or relabel the earlier 76-work observations.
+
+This is actual live runner execution in the available Codex host, using a direct source import. It is not a fresh-account installation test or proof that ChatGPT automatically loads and invokes the saved private plugin. That host-specific loading and capability constraint remains explicit after the authorized release. No eligibility flag, permissions, connection or public-directory status was changed.

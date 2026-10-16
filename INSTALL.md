@@ -2,11 +2,11 @@
 
 **HPL Physical Book Check** helps you check printed books at Houston Public Library using ChatGPT or Codex.
 
-**Already installed?** [Update to 1.3.9](#update-an-existing-installation), then [ask about a book](#ask-about-a-book).
+**Already installed?** [Update to 1.4.0](#update-an-existing-installation), then [ask about a book](#ask-about-a-book).
 
 ## Before you start
 
-This is an early test version, **1.3.9**. It takes some setup, may need help, and does not work with every account yet. Installation and a book search still need to be tested on a new user's account.
+This is an early test version, **1.4.0**. It takes some setup, may need help, and does not work with every account yet. Installation and a book search still need to be tested on a new user's account.
 
 Use a **computer**. Plugins are not currently available in the ChatGPT mobile app. You will need an account that lets you install this plugin, and a chat that can open the library's live catalog pages. See [OpenAI's plugin guide](https://learn.chatgpt.com/docs/plugins).
 
@@ -18,9 +18,9 @@ You do not need to sign in to a library account for these checks. This tool does
 
 Prefer to watch first? The [setup walkthrough video](README.md#watch-first) shows these steps.
 
-The screenshots below are from the October 14, 2026 walkthrough. They show where to click; use the **1.3.9** file and the exact message in this guide.
+The screenshots below are from the October 14, 2026 walkthrough. They show where to click; use the **1.4.0** file and the exact message in this guide.
 
-1. On your computer, [download the ChatGPT plugin file](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.9/hpl-physical-book-check-1.3.9-chatgpt.zip) (`hpl-physical-book-check-1.3.9-chatgpt.zip`). Leave it zipped: do not open or unpack it. Use this file, not the plain 1.3.9 ZIP, which is for Codex.
+1. On your computer, [download the ChatGPT plugin file](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.4.0/hpl-physical-book-check-1.4.0-chatgpt.zip) (`hpl-physical-book-check-1.4.0-chatgpt.zip`). Leave it zipped: do not open or unpack it. Use this file, not the plain 1.4.0 ZIP, which is for Codex.
 2. Open a new ChatGPT chat. Type **@** in the message box, search for **Plugin Creator**, and select it. If you cannot find it, stop here and [ask Mit for help](SUPPORT.md).
 
    ![Step 2: Plugin Creator appears beneath the message box after typing @Plugin Creator. Select that menu result.](assets/setup/chatgpt-plugin-creator.png)
@@ -33,7 +33,7 @@ The screenshots below are from the October 14, 2026 walkthrough. They show where
 
    *Check that the ZIP is attached and Plugin Creator is selected. Copy the full message above; the screenshot shows earlier wording.*
 
-4. Open the installation link it gives you, and install if asked. Check that the name is **HPL Physical Book Check** and the saved version is **1.3.9**; if it differs, tell Mit.
+4. Open the installation link it gives you, and install if asked. Check that the name is **HPL Physical Book Check** and the saved version is **1.4.0**; if it differs, tell Mit.
 5. Choose **Try in chat**. Or start a new chat, type **@**, search for **HPL Physical Book Check**, and select it under **Plugins**. Then [ask about a book](#ask-about-a-book).
 
    ![Step 5: The HPL Physical Book Check plugin page has a Try in chat button beside Manage near the top right.](assets/setup/chatgpt-try-in-chat.png)
@@ -52,11 +52,11 @@ The publisher confirmed that Codex CLI 0.160.1 could find the previous 1.3.6 rel
 1. Open your terminal and copy this command:
 
    ```sh
-   codex plugin marketplace add mit112/hpl-physical-book-check --ref v1.3.9
+   codex plugin marketplace add mit112/hpl-physical-book-check --ref v1.4.0
    ```
 
 2. Open the desktop **Plugins** browser. Choose **Mit HPL Plugins** and install **HPL Physical Book Check**. In an interactive Codex session, `/plugins` opens the plugin browser. If the source does not appear, restart the desktop app and try again. Labels may differ by app.
-3. Check the plugin details for **1.3.9**. Start a new chat and select or invoke the installed plugin, then ask the book question below. If you cannot find it or it cannot open the catalog, get help.
+3. Check the plugin details for **1.4.0**. Start a new chat and select or invoke the installed plugin, then ask the book question below. If you cannot find it or it cannot open the catalog, get help.
 
 For a technical check that the source was added:
 
@@ -64,7 +64,7 @@ For a technical check that the source was added:
 codex plugin list --marketplace mit-hpl-plugins --available --json
 ```
 
-Look for `hpl-physical-book-check@mit-hpl-plugins`, version `1.3.9`. An available listing does not mean the plugin has been installed.
+Look for `hpl-physical-book-check@mit-hpl-plugins`, version `1.4.0`. An available listing does not mean the plugin has been installed.
 
 </details>
 
@@ -74,7 +74,7 @@ Existing private imports do not update automatically from GitHub. Download the c
 
 > Update my existing HPL Physical Book Check plugin from this package. Preserve its identity and visibility. Do not create a second plugin or change who can access it. Give me the saved version and plugin link. If you cannot update that plugin, say so.
 
-Check that it reports **1.3.9**, then start a new chat and select the plugin again. For Codex, add the `v1.3.9` marketplace tag using the setup command above, then use the app's update or reinstall flow and check the installed version.
+Check that it reports **1.4.0**, then start a new chat and select the plugin again. For Codex, add the `v1.4.0` marketplace tag using the setup command above, then use the app's update or reinstall flow and check the installed version.
 
 ## Ask about a book
 
@@ -99,7 +99,7 @@ Check the linked catalog before making a trip. Ask the library about borrowing o
 <details>
 <summary>Updates, removal, and technical notes</summary>
 
-A private imported copy does not update automatically from this repository. The Codex setup is pinned to 1.3.9; switching versions requires adding the newer published tag and following your app's update or reinstall flow.
+A private imported copy does not update automatically from this repository. The Codex setup is pinned to 1.4.0; switching versions requires adding the newer published tag and following your app's update or reinstall flow.
 
 To remove the Codex installation, uninstall the plugin in the Plugins browser, then remove its source:
 
@@ -109,9 +109,9 @@ codex plugin marketplace remove mit-hpl-plugins
 
 Uninstalling the plugin and removing its source are separate actions.
 
-This skills-only package supplies instructions and an optional evidence processor, not a browser, server, or library-account connection. Python is optional for manual use. Live checks need permitted tools that can inspect record details and item-level holdings; search snippets alone are insufficient. Unknown labels or statuses and reference material can prevent a complete result. The processor now provides a resumable batch queue and completion gate; the experimental retrieval prototype is excluded.
+This skills-only package supplies instructions, an evidence processor and a host-browser runner. It has no browser, hosted server or library-account connection of its own. Python is optional for quick and single-title manual use. The thorough-list runner needs permitted CUA browser access, Node.js 18+ and Python 3.10+ supplied by the host; no npm or pip packages are needed. Users need no local installation when the host supplies those capabilities. Missing capabilities must be disclosed. Live checks need record details and item-level holdings; search snippets alone are insufficient. Unknown labels or statuses and reference material can prevent a complete result. The separate experimental retrieval prototype is excluded. Fresh Codex execution and saved resume have been checked; automatic installed ChatGPT invocation remains unverified.
 
-The ChatGPT plugin file is the 1.3.9 release without `.agents/plugins/marketplace.json`, the Codex marketplace catalog that Plugin Creator rejected; every other file is identical to the `v1.3.9` tag.
+The ChatGPT plugin file is the 1.4.0 release without `.agents/plugins/marketplace.json`, the Codex marketplace catalog that Plugin Creator rejected; every other file is identical to the `v1.4.0` tag.
 
 This GitHub release is separate from OpenAI's public plugin directory; it is not listed or approved there. Import availability and saved version depend on your account and workspace. Do not treat an imported copy as necessarily byte-identical to the ZIP.
 
