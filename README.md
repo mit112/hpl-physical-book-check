@@ -10,7 +10,17 @@ It tries to find a copy and tells you where it is, whether it is available, and 
 
 **[Start here: setup and your first book search →](INSTALL.md)**
 
-**Watch first:** [30-second introduction](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-intro.mp4) · [90-second setup walkthrough](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-walkthrough.mp4). The book results shown are October 14, 2026 examples; availability changes.
+## Watch first
+
+**30-second introduction**
+
+https://github.com/user-attachments/assets/01a0614c-5487-4a67-b479-450e59e6b575
+
+**90-second setup walkthrough**
+
+https://github.com/user-attachments/assets/44e5f8a5-af11-4453-a892-09c38f7a1178
+
+The book results shown are October 14, 2026 examples; availability changes. The screens show the version installed that day; use the current file from the [setup guide](INSTALL.md).
 
 **Before you start:** this is an early test version, **1.3.8**. Setup may need help, and it does not work with every account. There is no one-click ChatGPT install link yet. Use a computer; plugins are not currently available in the ChatGPT mobile app. Your chat also needs access to the library's live catalog. See the [setup guide](INSTALL.md) and [OpenAI's plugin guide](https://learn.chatgpt.com/docs/plugins).
 
@@ -40,7 +50,7 @@ A quick check stops at a verified available item. A thorough check aims to resol
 
 Version 1.3.7 simplifies the introduction, setup guide, feedback, and plugin description. Version 1.3.6 added manual marketplace distribution. The optional processor is unchanged from 1.3.4. Automated tests cover processor behavior, not end-to-end reliability across hosts. Use with supervision. The separate experimental retrieval prototype is excluded and does not certify this package. See [validation scope](VALIDATION.md).
 
-Version 1.3.8 simplifies book-search answers: a direct answer first, **Details** for editions, shelf numbers, links and coverage, then **Also useful** for related findings. During a thorough lookup, it reuses evidence and checks a few relevant HPL sources for likely next questions about the same book or location, such as other copies, branch hours or pickup rules. Quick checks still stop at the first confirmed copy. See the [answer guide](skills/hpl-physical-book-check/references/answer-format.md). Existing 1.3.7 installations need updating to receive these changes. The videos show 1.3.7 setup; use the current download in the setup guide.
+Version 1.3.8 simplifies book-search answers: a direct answer first, **Details** for editions, shelf numbers, links and coverage, then **Also useful** for related findings. During a thorough lookup, it reuses evidence and checks a few relevant HPL sources for likely next questions about the same book or location, such as other copies, branch hours or pickup rules. Quick checks still stop at the first confirmed copy. See the [answer guide](skills/hpl-physical-book-check/references/answer-format.md). Existing 1.3.7 installations need updating to receive these changes.
 
 The uploaded 1.3.5 draft was blocked on October 14, 2026: “We are not accepting more skills-only submissions at this time.” The portal also flagged pricing wording and category clarity during scanning. Version 1.3.7 removes listing pricing wording and clarifies the library-research purpose; Productivity remains the documented category. It has not been reuploaded or rescanned. This package is **not submitted for review, approved, or published in OpenAI's public directory**. GitHub distribution and private/local installation are separate. Check the actual portal state before attempting another submission.
 

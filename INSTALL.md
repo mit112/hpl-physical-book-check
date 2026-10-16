@@ -16,7 +16,7 @@ You do not need to sign in to a library account for these checks. This tool does
 
 **This is a setup option to test, not a confirmed install method for every account.** It worked on Mit's account on October 14, 2026. Try it only if your account offers Plugin Creator. That is the ChatGPT tool that helps add plugins.
 
-Prefer to watch first? The [walkthrough video](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.7/hpl-physical-book-check-walkthrough.mp4) shows these steps for 1.3.7; use the current 1.3.8 file below.
+Prefer to watch first? The [setup walkthrough video](README.md#watch-first) shows these steps.
 
 1. On your computer, [download the ChatGPT plugin file](https://github.com/mit112/hpl-physical-book-check/releases/download/v1.3.8/hpl-physical-book-check-1.3.8-chatgpt.zip) (`hpl-physical-book-check-1.3.8-chatgpt.zip`). Leave it zipped: do not open or unpack it. Use this file, not the plain 1.3.8 ZIP, which is for Codex.
 2. Open a new ChatGPT chat. Type **@** in the message box, search for **Plugin Creator**, and select it. If you cannot find it, stop here and [ask Mit for help](SUPPORT.md).
