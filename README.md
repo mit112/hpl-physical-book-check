@@ -1,5 +1,7 @@
 # Find a print book at Houston Public Library
 
+**This branch contains the unreleased 1.4.0 browser-runner candidate.** The published release and private account plugin remain **1.3.9**. Production ChatGPT execution is unverified; the setup links below intentionally still point to the published release. See the [candidate validation record](VALIDATION.md#140-live-browser-candidate--october-16-2026).
+
 Want to know whether Houston Public Library has a book you want to read? **HPL Physical Book Check** helps you check printed books at your favorite branch or anywhere in the library system, using ChatGPT or Codex.
 
 Once it is set up, ask in your own words. For example:
@@ -44,7 +46,7 @@ Include the author if you know it. You do not need special wording. If more than
 <details>
 <summary>Technical details, testing, and directory status</summary>
 
-This is a skills-only plugin: instructions and an optional evidence processor, with no hosted catalog API, MCP server, browser, or library-account connection. The host must supply tools that can inspect live catalog records and item-level holdings. Manual use does not require Python; the optional processor needs Python 3.10+ and the standard library. See the [evidence toolkit](skills/hpl-physical-book-check/references/evidence-toolkit.md).
+This is a skills-only plugin with instructions, an evidence processor and a host-browser runner. It has no hosted catalog API, MCP server, browser of its own, or library-account connection. The host must supply tools that can inspect live catalog records and item-level holdings. Single-title and quick manual use does not require Python. The candidate thorough-list runner requires a host with permitted CUA browser access, Node.js 18+ and Python 3.10+; it needs no npm or pip packages. Users need no software installation when the host supplies those capabilities. See the [evidence toolkit](skills/hpl-physical-book-check/references/evidence-toolkit.md).
 
 A quick check stops at a verified available item. A thorough check aims to resolve every scoped candidate and edition. Incomplete evidence must produce **Unable to verify** or a partial positive; unknown totals stay unknown. Regular and large print are distinguished. Digital books, audio, DVDs, adaptations, and kits are excluded from ordinary print requests. Reference and special-collection status does not establish borrowing or transfer eligibility. Checks remain read-only; holds require separately supported tools and authorization.
 

@@ -5,15 +5,17 @@ description: "Use when a user asks for physical print-book availability, branch 
 
 # HPL Physical Book Check
 
-Workflow release: **1.3.9**.
+Workflow release: **1.4.0**.
+
+Unreleased candidate; the published plugin remains 1.3.9 until production-runtime validation succeeds.
 
 ## Skill loading and recovery
 
 Use the exact package locator returned by the host's skills catalog. Read this SKILL.md and its references using that same resolved package and the complete resource URIs returned by the host. For a local installation, resolve files relative to this skill directory. Display names, a bare plugin ID, and the plugin's parent URI are not package identifiers. Do not copy another installation's private package locator.
 
-After a package-not-available error, use the host's skills listing/discovery, follow pagination until this skill is found or the inventory ends, and read the returned package unchanged. Do not cycle through guessed identifiers. If loading still fails, state that the HPL workflow could not be loaded; any independent catalog observations remain explicitly partial unless a complete scoped evidence ledger is established. A skill-read failure does not imply missing dedicated catalog tools: this plugin supplies workflow instructions and an optional local processor, with live retrieval supplied by the host.
+After a package-not-available error, use the host's skills listing/discovery, follow pagination until this skill is found or the inventory ends, and read the returned package unchanged. Do not cycle through guessed identifiers. If loading still fails, state that the HPL workflow could not be loaded; any independent catalog observations remain explicitly partial unless a complete scoped evidence ledger is established. A skill-read failure does not imply missing dedicated catalog tools: this plugin supplies the workflow, evidence processor and host-browser runner; the host must still provide a permitted browser and execution capability.
 
-Check live item-level evidence and report the user's selected HPL branch first. In ChatGPT Work, read [Work lookup workflow](references/work-workflow.md) and prefer its permitted interactive browser when no live catalog connector supplies item rows. This independent plugin has no hosted HPL API connection. Users need no local setup. The optional Python helper processes evidence; the separate experimental browser connector is not required.
+Check live item-level evidence and report the user's selected HPL branch first. In ChatGPT Work, read [Work lookup workflow](references/work-workflow.md) and prefer its permitted interactive browser when no live catalog connector supplies item rows. This independent plugin has no hosted HPL API connection. Users need no local setup. The Python helper processes evidence; the browser runtime executes thorough lists through the permitted host browser. The separate experimental browser connector is not required.
 
 ## Check mode
 
@@ -21,7 +23,7 @@ Default to **thorough**: inspect all scoped print editions and applicable search
 
 If a quick request accepts any one of several volumes, the first qualifying item satisfies the whole request; stop further volume searches.
 
-For lists or refresh/resume requests, read [evidence toolkit](references/evidence-toolkit.md) **before the first catalog search**. Establish the entire requested title manifest first, preserving award year/category labels. When a host Python executor is available, initialize the saved ledger and use its `next` / retrieve / ingest / mark loop, then `finalize` before answering. A diagnostic `report` is not a completion check. When execution is unavailable, follow the same queue and stopping contract manually; users need no Python installation. The processor cannot verify identity or collect live catalog data by itself.
+For lists or refresh/resume requests, read [evidence toolkit](references/evidence-toolkit.md) **before the first catalog search**. Establish the entire requested title manifest first, preserving award year/category labels. For a thorough multi-title request, read and execute the [browser runtime](references/browser-runtime.md): `collect` performs live retrieval and saves each work, `review` records the assistant's identity/edition decisions, and `finalize` determines whether to continue. Use the host's permitted runtime; do not silently substitute an open-ended manual loop. A diagnostic `report` is not a completion check. Quick and single-title checks retain their existing stopping rules. The processor alone cannot verify identity or collect live catalog data.
 
 ## Scope and branch
 

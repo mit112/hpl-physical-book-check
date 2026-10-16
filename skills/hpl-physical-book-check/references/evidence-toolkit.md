@@ -2,6 +2,8 @@
 
 Use `python scripts/hpl_evidence.py --help` relative to this skill's resolved local directory. Python 3.10+ and the standard library are sufficient. Resolve/read the packaged script through the host's skill/file tools when needed. This is optional local processing, not a live scraper, browser installation, or MCP server. Never replace unavailable catalog access with cached test fixtures.
 
+For thorough multi-title requests, execute the [browser runtime](browser-runtime.md). It collects and ingests this evidence contract through the host browser; the commands below also support single-title and quick checks. If its host capabilities are unavailable, disclose the actual gap rather than silently reverting to a manual batch loop.
+
 ## Workflow
 
 1. Before catalog retrieval, create the full title list JSON array of objects containing `title` and `author`, with optional `labels` strings for award years/categories. Verify the complete bounded award list from official sources first and retain those sources with the coverage receipt. Initialize a working ledger with `init --titles titles.json --output ledger.json --branch Looscan`. Use the user's actual branch, or `--all-branches`. Add `--language English` for the actual language scope and `--mode quick` only when requested. Use `--any-one` only for an explicit quick request accepting any one of the listed works; ordinary lists require each work. The default is thorough. Titles are deduplicated by normalized title+author, merging their labels; the output lists stable keys and the run ID. Never replace the manifest with the first few titles checked.
@@ -46,7 +48,7 @@ Omit `--key` only for an observed site-wide access failure or an actual host-wid
 
 After access returns, run `resume ledger.json --key KEY` for an isolated blocker or `resume ledger.json` to clear all blockers, then `next`. For a later fresh check, use `refresh` instead; it invalidates old inventory evidence and blockers. Checkpoints do not run background work or schedule a continuation.
 
-Without a host executor, retain the full manifest and the same per-work states manually, use batches of at most ten, and reconcile every remaining work before answering. Disclose that the executable completion gate was unavailable. A skills-only package cannot force the host to invoke this helper or prevent the host from sending a final answer outside it.
+Without the required host runtime, preserve the full manifest and report the specific missing capability under the browser-runtime contract. A compatible live connector may execute the same queue. Disclose when the executable completion gate was unavailable. A skills-only package cannot force the host to invoke this helper or prevent the host from sending a final answer outside it.
 
 ## Record contract
 
